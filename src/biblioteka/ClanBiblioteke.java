@@ -1,6 +1,8 @@
-package osobe;
+package biblioteka;
 
 import java.time.LocalDate;
+
+import enumeracije.EnumPol;
 
 public class ClanBiblioteke extends Osoba {
 
@@ -8,23 +10,26 @@ public class ClanBiblioteke extends Osoba {
     private LocalDate datumPoslednjeUplate;
     private int brojMeseciClanarine;
     private boolean aktivan;
-    
+    private TipClanarine tipclanarine;
     
     public ClanBiblioteke() {
+    	super();
     	this.brojClanskeKarte = "";
 		this.datumPoslednjeUplate = null;
 		this.brojMeseciClanarine = 0;
 		this.aktivan = false;
+		this.tipclanarine = null;
     	
     }
     
 	public ClanBiblioteke(String brojClanskeKarte, LocalDate datumPoslednjeUplate, int brojMeseciClanarine,
-			boolean aktivan) {
-		super();
+			boolean aktivan, String id, String imeIPrezime, String JMBG, String adresa, EnumPol pol, boolean obrisan, TipClanarine tipclanarine) {
+		super(id, imeIPrezime, JMBG, adresa, pol, obrisan);
 		this.brojClanskeKarte = brojClanskeKarte;
 		this.datumPoslednjeUplate = datumPoslednjeUplate;
 		this.brojMeseciClanarine = brojMeseciClanarine;
 		this.aktivan = aktivan;
+		this.tipclanarine = tipclanarine;
 		
 	}
 	
@@ -52,6 +57,24 @@ public class ClanBiblioteke extends Osoba {
 	}
 	public void setAktivan(boolean aktivan) {
 		this.aktivan = aktivan;
+	}
+
+	@Override
+	public String toString() {
+		return "ClanBiblioteke " + super.toString() + 
+				"\nbrojClanskeKarte=" + brojClanskeKarte +
+				"\ndatumPoslednjeUplate=" + datumPoslednjeUplate + 
+				"\nbrojMeseciClanarine=" + brojMeseciClanarine +
+				"\naktivan=" + aktivan;
+				
+	}
+
+	public TipClanarine getTipclanarine() {
+		return tipclanarine;
+	}
+
+	public void setTipclanarine(TipClanarine tipclanarine) {
+		this.tipclanarine = tipclanarine;
 	}
 	
 

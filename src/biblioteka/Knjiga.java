@@ -8,42 +8,44 @@ public class Knjiga {
 	    private String id;
 	    private String naslovKnjige;
 	    private String originalniNaslovKnjige;
-	    private String imePisca;
-	    private String prezimePisca;
-	    private LocalDate godinaObjavljivanja;
+	    private String pisac;
+	    private int godinaObjavljivanja;
 	    private String opis;
 	    private EnumJezik jezik;
 	    private boolean obrisan;
+	    private ZanrKnjige zanr;
 	    
 	    
     public Knjiga() {
     	this.id = "";
 		this.naslovKnjige = "";
 		this.originalniNaslovKnjige = "";
-		this.imePisca ="";
-		this.prezimePisca = "";
-		this.godinaObjavljivanja = null;
+		this.pisac ="";
+		this.godinaObjavljivanja = -1;
 		this.opis = "";
 		this.jezik = EnumJezik.ENGLESKI;;
 		this.obrisan = false;
+		this.zanr = null;
     }
 
    
     
     
-	public Knjiga(String id, String naslovKnjige, String originalniNaslovKnjige, String imePisca, String prezimePisca,
-			LocalDate godinaObjavljivanja, String opis, EnumJezik jezik, boolean obrisan) {
+	public Knjiga(String id, String naslovKnjige, String originalniNaslovKnjige, String pisac,
+			int godinaObjavljivanja, String opis, EnumJezik jezik, boolean obrisan, ZanrKnjige zanr) {
 		super();
 		this.id = id;
 		this.naslovKnjige = naslovKnjige;
 		this.originalniNaslovKnjige = originalniNaslovKnjige;
-		this.imePisca = imePisca;
-		this.prezimePisca = prezimePisca;
+		this.pisac = pisac;
 		this.godinaObjavljivanja = godinaObjavljivanja;
 		this.opis = opis;
 		this.jezik = jezik;
 		this.obrisan = obrisan;
+		this.zanr = zanr;
 	}
+
+
 	public String getId() {
 		return id;
 	}
@@ -62,22 +64,17 @@ public class Knjiga {
 	public void setOriginalniNaslovKnjige(String originalniNaslovKnjige) {
 		this.originalniNaslovKnjige = originalniNaslovKnjige;
 	}
-	public String getImePisca() {
-		return imePisca;
+	public String getPisac() {
+		return pisac;
 	}
-	public void setImePisca(String imePisca) {
-		this.imePisca = imePisca;
+	public void setPisac(String pisac) {
+		this.pisac = pisac;
 	}
-	public String getPrezimePisca() {
-		return prezimePisca;
-	}
-	public void setPrezimePisca(String prezimePisca) {
-		this.prezimePisca = prezimePisca;
-	}
-	public LocalDate getGodinaObjavljivanja() {
+	
+	public int getGodinaObjavljivanja() {
 		return godinaObjavljivanja;
 	}
-	public void setGodinaObjavljivanja(LocalDate godinaObjavljivanja) {
+	public void setGodinaObjavljivanja(int godinaObjavljivanja) {
 		this.godinaObjavljivanja = godinaObjavljivanja;
 	}
 	public String getOpis() {
@@ -99,4 +96,34 @@ public class Knjiga {
 		this.obrisan = obrisan;
 	}
 
+
+
+
+	@Override
+	public String toString() {
+		return "Knjiga \nid=" + id +
+				"\nnaslovKnjige=" + naslovKnjige +
+				"\noriginalniNaslovKnjige="
+				+ originalniNaslovKnjige +
+				"\npisac=" + pisac
+				+ "\ngodinaObjavljivanja=" + godinaObjavljivanja +
+				"\nopis=" + opis +
+				"\njezik=" + jezik +
+				"\nobrisan=" + obrisan + "\nzanr="+ zanr;
+	}
+
+
+
+
+	public ZanrKnjige getZanr() {
+		return zanr;
+	}
+
+
+
+
+	public void setZanr(ZanrKnjige zanr) {
+		this.zanr = zanr;
+	}
+	
 }

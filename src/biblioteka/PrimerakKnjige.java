@@ -89,6 +89,19 @@ public class PrimerakKnjige {
 	public void setObrisan(boolean obrisan) {
 		this.obrisan = obrisan;
 	}
+
+
+	@Override
+	public String toString() {
+		return "PrimerakKnjige \nid=" + id +
+				"\nnazivKnjige=" + nazivKnjige + 
+				"\nbrojStrana=" + brojStrana
+				+ "\ntipPoveza=" + tipPoveza +
+				"\njezik=" + jezik +
+				"\ngodinaStampanja=" + godinaStampanja
+				+ "\niznajmljena=" + iznajmljena +
+				"\nobrisan=" + obrisan;
+	}
 	
 
 }

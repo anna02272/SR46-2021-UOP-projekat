@@ -1,12 +1,11 @@
-package osobe;
+package biblioteka;
 
 import enumeracije.EnumPol;
 
 public abstract class Osoba {
 
 	protected String id;
-    protected String ime;
-    protected String prezime;
+    protected String imeIPrezime;
     protected String JMBG;
     protected String adresa;
     protected EnumPol pol;
@@ -14,8 +13,7 @@ public abstract class Osoba {
 	
     public Osoba() {
     	this.id = "";
-		this.ime = "";
-		this.prezime = "";
+		this.imeIPrezime = "";
 		JMBG = "";
 		this.adresa = "";
 		this.pol = EnumPol.MUSKI;
@@ -24,11 +22,10 @@ public abstract class Osoba {
 
     
     
-	public Osoba(String id, String ime, String prezime, String jMBG, String adresa, EnumPol pol, boolean obrisan) {
+	public Osoba(String id, String imeIPrezime, String jMBG, String adresa, EnumPol pol, boolean obrisan) {
 		super();
 		this.id = id;
-		this.ime = ime;
-		this.prezime = prezime;
+		this.imeIPrezime = imeIPrezime;
 		JMBG = jMBG;
 		this.adresa = adresa;
 		this.pol = pol;
@@ -43,21 +40,14 @@ public abstract class Osoba {
 		this.id = id;
 	}
 
-	public String getIme() {
-		return ime;
+	public String getImeIPrezime() {
+		return imeIPrezime;
 	}
 
-	public void setIme(String ime) {
-		this.ime = ime;
+	public void setImeIPrezime(String imeIPrezime) {
+		this.imeIPrezime = imeIPrezime;
 	}
 
-	public String getPrezime() {
-		return prezime;
-	}
-
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
-	}
 
 	public String getJMBG() {
 		return JMBG;
@@ -83,17 +73,24 @@ public abstract class Osoba {
 		this.pol = pol;
 	}
 
-
-
 	public boolean isObrisan() {
 		return obrisan;
 	}
 
-
-
 	public void setObrisan(boolean obrisan) {
 		this.obrisan = obrisan;
 	}
+
+	@Override
+	public String toString() {
+		return "Osoba   \nID= " + id +
+						"\nImeIPrezime= " + imeIPrezime +
+						"\nJMBG= " + JMBG +
+						"\nAdresa= " + adresa +
+						"\nPol= " + pol +
+						"\nObrisan= " + obrisan;
+	}
+	
 	
 	
 

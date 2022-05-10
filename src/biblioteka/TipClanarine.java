@@ -50,6 +50,16 @@ public class TipClanarine {
 	public void setObrisan(boolean obrisan) {
 		this.obrisan = obrisan;
 	}
+
+
+	@Override
+	public String toString() {
+		return "TipClanarine \nid=" + id +
+				"\nnaziv=" + naziv +
+				"\ncena=" + cena +
+				"\nobrisan=" + obrisan;
+	}
+	
 	
 
 }
