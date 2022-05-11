@@ -16,10 +16,9 @@ public class ClanBiblioteke extends Osoba {
     	super();
     	this.brojClanskeKarte = "";
 		this.datumPoslednjeUplate = null;
-		this.brojMeseciClanarine = 0;
+		this.brojMeseciClanarine = -1;
 		this.aktivan = false;
-		this.tipclanarine = null;
-    	
+		this.tipclanarine = null;	
     }
     
 	public ClanBiblioteke(String brojClanskeKarte, LocalDate datumPoslednjeUplate, int brojMeseciClanarine,
@@ -30,7 +29,6 @@ public class ClanBiblioteke extends Osoba {
 		this.brojMeseciClanarine = brojMeseciClanarine;
 		this.aktivan = aktivan;
 		this.tipclanarine = tipclanarine;
-		
 	}
 	
 		public String getBrojClanskeKarte() {
@@ -59,14 +57,13 @@ public class ClanBiblioteke extends Osoba {
 		this.aktivan = aktivan;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "ClanBiblioteke " + super.toString() + 
-				"\nbrojClanskeKarte=" + brojClanskeKarte +
-				"\ndatumPoslednjeUplate=" + datumPoslednjeUplate + 
-				"\nbrojMeseciClanarine=" + brojMeseciClanarine +
-				"\naktivan=" + aktivan;
-				
+		return "ClanBiblioteke [brojClanskeKarte=" + brojClanskeKarte + ", datumPoslednjeUplate=" + datumPoslednjeUplate
+				+ ", brojMeseciClanarine=" + brojMeseciClanarine + ", aktivan=" + aktivan + ", tipclanarine="
+				+ tipclanarine + ", id=" + id + ", imeIPrezime=" + imeIPrezime + ", JMBG=" + JMBG + ", adresa=" + adresa
+				+ ", pol=" + pol + ", obrisan=" + obrisan + "]";
 	}
 
 	public TipClanarine getTipclanarine() {

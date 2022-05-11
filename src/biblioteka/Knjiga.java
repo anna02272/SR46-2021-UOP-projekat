@@ -15,7 +15,6 @@ public class Knjiga {
 	    private boolean obrisan;
 	    private ZanrKnjige zanr;
 	    
-	    
     public Knjiga() {
     	this.id = "";
 		this.naslovKnjige = "";
@@ -27,10 +26,6 @@ public class Knjiga {
 		this.obrisan = false;
 		this.zanr = null;
     }
-
-   
-    
-    
 	public Knjiga(String id, String naslovKnjige, String originalniNaslovKnjige, String pisac,
 			int godinaObjavljivanja, String opis, EnumJezik jezik, boolean obrisan, ZanrKnjige zanr) {
 		super();
@@ -95,6 +90,14 @@ public class Knjiga {
 	public void setObrisan(boolean obrisan) {
 		this.obrisan = obrisan;
 	}
+	public ZanrKnjige getZanr() {
+		return zanr;
+	}
+
+	public void setZanr(ZanrKnjige zanr) {
+		this.zanr = zanr;
+	}
+	
 
 
 
@@ -111,19 +114,9 @@ public class Knjiga {
 				"\njezik=" + jezik +
 				"\nobrisan=" + obrisan + "\nzanr="+ zanr;
 	}
-
-
-
-
-	public ZanrKnjige getZanr() {
-		return zanr;
-	}
-
-
-
-
-	public void setZanr(ZanrKnjige zanr) {
-		this.zanr = zanr;
-	}
-	
 }
+
+
+
+
+

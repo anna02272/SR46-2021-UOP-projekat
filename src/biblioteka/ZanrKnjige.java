@@ -1,28 +1,37 @@
 package biblioteka;
 
 public class ZanrKnjige {
-
+	private String id;
     private String oznaka;
     private String opis;
     private boolean obrisan;
-    private String id;
+    
 
     public ZanrKnjige() {
+    	this.id = "";
     	this.oznaka = "";
 		this.opis = "";
 		this.obrisan = false;
-		this.id = "";
+		
     }
     
     
-	public ZanrKnjige(String oznaka, String opis, boolean obrisan, String id) {
+	public ZanrKnjige(String id, String oznaka, String opis, boolean obrisan) {
 		super();
+		this.id = id;
 		this.oznaka = oznaka;
 		this.opis = opis;
 		this.obrisan = obrisan;
+		
+	}
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
 		this.id = id;
 	}
-	
 	
 	public String getOznaka() {
 		return oznaka;
@@ -48,19 +57,12 @@ public class ZanrKnjige {
 	}
 
 	
-	public String getId() {
-		return id;
-	}
-
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	
 
 
 	@Override
 	public String toString() {
-		return "ZanrKnjige \noznaka=" + oznaka +
+		return "ZanrKnjige \nid=" + id + "\noznaka=" + oznaka +
 				"\nopis=" + opis +
 				"\nobrisan=" + obrisan;
 	}

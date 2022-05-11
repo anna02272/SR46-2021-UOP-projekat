@@ -1,6 +1,14 @@
 package biblioteka;
 
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import enumeracije.EnumJezik;
+import enumeracije.EnumPol;
 
 
 public class Biblioteka {
@@ -9,15 +17,14 @@ public class Biblioteka {
 	    private String adresa;
 	    private String telefon;
 	    private String radnoVreme;
-	    private boolean obrisan;
 	    
 	    private ArrayList<Biblioteka> biblioteke;
 		private ArrayList<Knjiga> knjige;
 		private ArrayList<PrimerakKnjige> primerakKnjiga;
 		private ArrayList<TipClanarine> tipoviClanarine;
 		private ArrayList<ZanrKnjige> zanroviKnjiga;
-		private ArrayList<Administrator> administratori;
-		private ArrayList<Bibliotekar> bibliotekar;
+		protected ArrayList<Administrator> administratori;
+		private ArrayList<Bibliotekar> bibliotekari;
 		private ArrayList<ClanBiblioteke> clanoviBiblioteke;
 	    
     public Biblioteka() {
@@ -26,7 +33,6 @@ public class Biblioteka {
 		this.adresa = "";
 		this.telefon = "";
 		this.radnoVreme = "" ;
-		this.obrisan = false;
 		
 		this.biblioteke = new ArrayList<Biblioteka>();
 		this.knjige = new ArrayList<Knjiga>();
@@ -34,15 +40,15 @@ public class Biblioteka {
 		this.tipoviClanarine = new ArrayList<TipClanarine>();
 		this.zanroviKnjiga = new ArrayList<ZanrKnjige>();
 		this.administratori = new ArrayList<Administrator>();
-		this.bibliotekar = new ArrayList<Bibliotekar>();
+		this.bibliotekari = new ArrayList<Bibliotekar>();
 		this.clanoviBiblioteke = new ArrayList<ClanBiblioteke>();
     }
        
 	
-	public Biblioteka(String id, String naziv, String adresa, String telefon, String radnoVreme, boolean obrisan,
+	public Biblioteka(String id, String naziv, String adresa, String telefon, String radnoVreme,
 			ArrayList<Biblioteka> biblioteke, ArrayList<Knjiga> knjige, ArrayList<PrimerakKnjige> primerakKnjiga,
 			ArrayList<TipClanarine> tipoviClanarine, ArrayList<ZanrKnjige> zanroviKnjiga,
-			ArrayList<Administrator> administratori, ArrayList<Bibliotekar> bibliotekar,
+			ArrayList<Administrator> administratori, ArrayList<Bibliotekar> bibliotekari,
 			ArrayList<ClanBiblioteke> clanoviBiblioteke) {
 		super();
 		this.id = id;
@@ -50,14 +56,13 @@ public class Biblioteka {
 		this.adresa = adresa;
 		this.telefon = telefon;
 		this.radnoVreme = radnoVreme;
-		this.obrisan = obrisan;
 		this.biblioteke = biblioteke;
 		this.knjige = knjige;
 		this.primerakKnjiga = primerakKnjiga;
 		this.tipoviClanarine = tipoviClanarine;
 		this.zanroviKnjiga = zanroviKnjiga;
 		this.administratori = administratori;
-		this.bibliotekar = bibliotekar;
+		this.bibliotekari = bibliotekari;
 		this.clanoviBiblioteke = clanoviBiblioteke;
 	}
 
@@ -92,15 +97,6 @@ public class Biblioteka {
 	public void setRadnoVreme(String radnoVreme) {
 		this.radnoVreme = radnoVreme;
 	}
-
-	public boolean isObrisan() {
-		return obrisan;
-	}
-
-	public void setObrisan(boolean obrisan) {
-		this.obrisan = obrisan;
-	}
-
 
 	public ArrayList<Biblioteka> getBiblioteke() {
 		return biblioteke;
@@ -152,13 +148,13 @@ public class Biblioteka {
 	}
 
 
-	public ArrayList<Bibliotekar> getBibliotekar() {
-		return bibliotekar;
+	public ArrayList<Bibliotekar> getBibliotekari() {
+		return bibliotekari;
 	}
 
 
-	public void setBibliotekar(ArrayList<Bibliotekar> bibliotekar) {
-		this.bibliotekar = bibliotekar;
+	public void setBibliotekari(ArrayList<Bibliotekar> bibliotekari) {
+		this.bibliotekari = bibliotekari;
 	}
 
 
@@ -177,20 +173,140 @@ public class Biblioteka {
 	}
 
 
-	public void setKnjige(ArrayList<Knjiga> knjige) {
-		this.knjige = knjige;
-	}
-
-
 	@Override
 	public String toString() {
 		return "Biblioteka \nid=" + id + "\nnaziv=" + naziv + "\nadresa=" + adresa + "\ntelefon=" + telefon
-				+ "\nradnoVreme=" + radnoVreme + "\nobrisan=" + obrisan + "\nbiblioteke=" + biblioteke + "\nknjige="
+				+ "\nradnoVreme=" + radnoVreme  + "\nbiblioteke=" + biblioteke + "\nknjige="
 				+ knjige + "\nprimerakKnjiga=" + primerakKnjiga + "\ntipoviClanarine=" + tipoviClanarine
-				+ "\nzanroviKnjiga=" + zanroviKnjiga + "\nadministratori=" + administratori + "\nbibliotekar="
-				+ bibliotekar + "\nclanoviBiblioteke=" + clanoviBiblioteke;
+				+ "\nzanroviKnjiga=" + zanroviKnjiga + "\nadministratori=" + administratori + "\nbibliotekari="
+				+ bibliotekari + "\nclanoviBiblioteke=" + clanoviBiblioteke;
+	}
+	
+	
+	//ADMINISTRATOR
+
+	public void upisiAdministratora(Administrator testAdministrator) {
+		try {
+			File file = new File("fajlovi/administratori.txt");
+			String content = "";
+			for (Administrator administrator : administratori) {
+				
+				content += administrator.getKorisnickoIme() + "|" + administrator.getKorisnickaLozinka() + "|"
+						+ administrator.getPlata() + "|" + administrator.getId() +
+						"|" + administrator.getImeIPrezime() + "|" +
+						administrator.getJMBG() + "|" + administrator.getAdresa() + "|"
+								+ administrator.getPol() + "|"
+						+ administrator.isObrisan() + "\n";
+			}
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(content);
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom snimanja administratora.");
+		}
+	}
+	
+		public ArrayList<Administrator> ucitajAdministratora(String administratorFajl) {
+			ArrayList<Administrator> administatori = new ArrayList<Administrator>();
+			try {
+				
+				File file = new File(administratorFajl);
+				BufferedReader reader = new BufferedReader(new FileReader(file));
+				String line;
+				while ((line = reader.readLine()) != null) {
+					String[] split = line.split("\\|");
+					String korisnickoIme= split[0];
+					String korisnickaLozinka= split[1];
+					double plata = Double.parseDouble(split[2]);
+					String id = split[3];
+					String imePrezime = split[4];
+					String JMBG = split[5];
+					String adresa = split[6];
+					String pol = split[7];
+					EnumPol pol1 = EnumPol.ZENSKI;
+					for (EnumPol j: EnumPol.values()) {
+						if(j.name().equalsIgnoreCase(pol)){
+							pol1 = j;
+						}
+					}
+					Boolean obrisan = Boolean.parseBoolean(split[8]);
+					Administrator admin = new Administrator(korisnickoIme,korisnickaLozinka,plata,id,imePrezime,JMBG,adresa,pol1,obrisan);
+					administatori.add(admin);
+					
+				}
+				reader.close();
+			} catch (IOException e) {
+				System.out.println("Greska prilikom snimanja podataka o administratoru");
+				e.printStackTrace();
+			}
+			return administatori;
+		}
+
+
+//BIBLIOTEKAR
+
+
+	public void upisiBibliotekara(Bibliotekar testBibliotekar) {
+		try {
+			File file = new File("fajlovi/bibliotekari.txt");
+			String content = "";
+			for (Bibliotekar bibliotekar : bibliotekari) {
+				
+				content += bibliotekar.getKorisnickoIme() + "|" + bibliotekar.getKorisnickaLozinka() + "|"
+						+ bibliotekar.getPlata() + "|" + bibliotekar.getId() +
+						"|" + bibliotekar.getImeIPrezime() + "|" +
+						bibliotekar.getJMBG() + "|" + bibliotekar.getAdresa() + "|"
+								+ bibliotekar.getPol() + "|"
+						+ bibliotekar.isObrisan() + "\n";
+			}
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(content);
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom snimanja bibliotekara.");
+		}
 	}
 
-
-	
+	public ArrayList<Bibliotekar> ucitajBibliotekara(String bibliotekarFajl) {
+		ArrayList<Bibliotekar> bibliotekari = new ArrayList<Bibliotekar>();
+		try {
+			
+			File file = new File(bibliotekarFajl);
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] split = line.split("\\|");
+				String korisnickoIme= split[0];
+				String korisnickaLozinka= split[1];
+				double plata = Double.parseDouble(split[2]);
+				String id = split[3];
+				String imePrezime = split[4];
+				String JMBG = split[5];
+				String adresa = split[6];
+				String pol = split[7];
+				EnumPol pol1 = EnumPol.ZENSKI;
+				for (EnumPol j: EnumPol.values()) {
+					if(j.name().equalsIgnoreCase(pol)){
+						pol1 = j;
+					}
+				}
+				Boolean obrisan = Boolean.parseBoolean(split[8]);
+				Bibliotekar bibl = new Bibliotekar(korisnickoIme,korisnickaLozinka,plata,id,imePrezime,JMBG,adresa,pol1,obrisan);
+				bibliotekari.add(bibl);
+				
+			}
+			reader.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom snimanja podataka o bibliotekaru");
+			e.printStackTrace();
+		}
+		return bibliotekari;
+	}
 }
+	
+
+
+
+
+
+

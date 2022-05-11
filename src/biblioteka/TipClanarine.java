@@ -14,7 +14,6 @@ public class TipClanarine {
 		this.obrisan = false;
     }
     
-    
 	public TipClanarine(String id, String naziv, double cena, boolean obrisan) {
 		super();
 		this.id = id;
