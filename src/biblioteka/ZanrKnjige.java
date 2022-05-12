@@ -56,16 +56,15 @@ public class ZanrKnjige {
 		this.obrisan = obrisan;
 	}
 
-	
-	
-
 
 	@Override
 	public String toString() {
-		return "ZanrKnjige \nid=" + id + "\noznaka=" + oznaka +
-				"\nopis=" + opis +
-				"\nobrisan=" + obrisan;
+		return "ZanrKnjige [id=" + id + ", |oznaka=" + oznaka + ", |opis=" + opis + ", |obrisan=" + obrisan + "]";
 	}
+
+	
+	
+
 	
 	
 }

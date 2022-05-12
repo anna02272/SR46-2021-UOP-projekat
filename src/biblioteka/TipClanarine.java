@@ -53,10 +53,10 @@ public class TipClanarine {
 
 	@Override
 	public String toString() {
-		return "TipClanarine \nid=" + id +
-				"\nnaziv=" + naziv +
-				"\ncena=" + cena +
-				"\nobrisan=" + obrisan;
+		return "TipClanarine" + "[id=" + id +
+				"|naziv=" + naziv +
+				"|cena=" + cena +
+				"|obrisan=" + obrisan + "]";
 	}
 	
 	

@@ -1,0 +1,1 @@
+id234|naslovKnjige|originalniNaslovKnjige|pisac|2002|opis|ENGLESKI|false|ZanrKnjige [id=id098, |oznaka=oznaka, |opis=opis, |obrisan=false]

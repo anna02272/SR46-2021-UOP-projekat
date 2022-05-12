@@ -60,10 +60,10 @@ public class ClanBiblioteke extends Osoba {
 	
 	@Override
 	public String toString() {
-		return "ClanBiblioteke [brojClanskeKarte=" + brojClanskeKarte + ", datumPoslednjeUplate=" + datumPoslednjeUplate
+		return "ClanBiblioteke brojClanskeKarte=" + brojClanskeKarte + ", datumPoslednjeUplate=" + datumPoslednjeUplate
 				+ ", brojMeseciClanarine=" + brojMeseciClanarine + ", aktivan=" + aktivan + ", tipclanarine="
 				+ tipclanarine + ", id=" + id + ", imeIPrezime=" + imeIPrezime + ", JMBG=" + JMBG + ", adresa=" + adresa
-				+ ", pol=" + pol + ", obrisan=" + obrisan + "]";
+				+ ", pol=" + pol + ", obrisan=" + obrisan ;
 	}
 
 	public TipClanarine getTipclanarine() {

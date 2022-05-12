@@ -7,14 +7,12 @@ public abstract class Zaposleni extends Osoba {
     protected String korisnickoIme;
     protected String korisnickaLozinka;
     protected double plata;
-    protected String id;
     
     public Zaposleni() {
     	super();
     	this.korisnickoIme = "";
 		this.korisnickaLozinka = "";
 		this.plata = -1;
-		this.id = "";
     }
 
 
@@ -57,14 +55,7 @@ public abstract class Zaposleni extends Osoba {
 	}
 
 
-	public String getId() {
-		return id;
-	}
 
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 
 	@Override

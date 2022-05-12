@@ -27,6 +27,11 @@ public class Administrator extends Zaposleni {
 				+ "\npol=" + pol + "\nobrisan=" + obrisan ;
 	}
 
+	public String getIdOsoba() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
     
 

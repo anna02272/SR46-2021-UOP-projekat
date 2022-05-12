@@ -102,6 +102,9 @@ public class PrimerakKnjige {
 				+ "\niznajmljena=" + iznajmljena +
 				"\nobrisan=" + obrisan;
 	}
+
+
+	
 	
 
 }
