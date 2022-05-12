@@ -1,1 +1,0 @@
-korisnickoIme|korisnickaLozinka|300000.0|null|imeIPrezime|JMBG|adresa|ZENSKI|false

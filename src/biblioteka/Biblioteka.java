@@ -21,7 +21,7 @@ public class Biblioteka {
 	    private String telefon;
 	    private String radnoVreme;
 	    
-//	    private ArrayList<Biblioteka> biblioteke;
+	    private ArrayList<Biblioteka> biblioteke;
 		private ArrayList<Knjiga> knjige;
 		private ArrayList<PrimerakKnjige> primerakKnjiga;
 		private ArrayList<TipClanarine> tipoviClanarine;
@@ -31,14 +31,14 @@ public class Biblioteka {
 		private ArrayList<ClanBiblioteke> clanoviBiblioteke;
 		private ArrayList<IznajmljivanjeKnjige> iznajmljivanjeKnjige;
 	    
-    public Biblioteka() {
-    	this.id = "";
-		this.naziv = "";
-		this.adresa = "";
-		this.telefon = "";
-		this.radnoVreme = "" ;
+    public Biblioteka(String id2, String naziv2, String adresa2, String telefon2, String radnoVreme2) {
+    	this.id = id2;
+		this.naziv = naziv2;
+		this.adresa = adresa2;
+		this.telefon = telefon2;
+		this.radnoVreme = radnoVreme2;
 		
-//		this.biblioteke = new ArrayList<Biblioteka>();
+		this.biblioteke = new ArrayList<Biblioteka>();
 		this.knjige = new ArrayList<Knjiga>();
 		this.primerakKnjiga = new ArrayList<PrimerakKnjige>();
 		this.tipoviClanarine = new ArrayList<TipClanarine>();
@@ -54,14 +54,14 @@ public class Biblioteka {
 		 ArrayList<Knjiga> knjige, ArrayList<PrimerakKnjige> primerakKnjiga,
 			ArrayList<TipClanarine> tipoviClanarine, ArrayList<ZanrKnjige> zanroviKnjiga,
 			ArrayList<Administrator> administratori, ArrayList<Bibliotekar> bibliotekari,
-			ArrayList<ClanBiblioteke> clanoviBiblioteke, ArrayList<IznajmljivanjeKnjige> iznajmljivanjeKnjiges) {
+			ArrayList<ClanBiblioteke> clanoviBiblioteke, ArrayList<IznajmljivanjeKnjige> iznajmljivanjeKnjiges, ArrayList<Biblioteka> biblioteke) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
 		this.adresa = adresa;
 		this.telefon = telefon;
 		this.radnoVreme = radnoVreme;
-//		this.biblioteke = biblioteke;
+		this.biblioteke = biblioteke;
 		this.knjige = knjige;
 		this.primerakKnjiga = primerakKnjiga;
 		this.tipoviClanarine = tipoviClanarine;
@@ -70,6 +70,11 @@ public class Biblioteka {
 		this.bibliotekari = bibliotekari;
 		this.clanoviBiblioteke = clanoviBiblioteke;
 		this.iznajmljivanjeKnjige = iznajmljivanjeKnjiges;
+	}
+
+
+	public Biblioteka() {
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -104,14 +109,14 @@ public class Biblioteka {
 		this.radnoVreme = radnoVreme;
 	}
 
-//	public ArrayList<Biblioteka> getBiblioteke() {
-//		return biblioteke;
-//	}
-//
-//
-//	public void setBiblioteke(ArrayList<Biblioteka> biblioteke) {
-//		this.biblioteke = biblioteke;
-//	}
+	public ArrayList<Biblioteka> getBiblioteke() {
+		return biblioteke;
+	}
+
+
+	public void setBiblioteke(ArrayList<Biblioteka> biblioteke) {
+		this.biblioteke = biblioteke;
+	}
 
 
 	public ArrayList<PrimerakKnjige> getPrimerakKnjiga() {
@@ -441,7 +446,7 @@ public class Biblioteka {
 							+ knjiga.getOriginalniNaslovKnjige() + "|" + knjiga.getPisac() +
 							"|" + knjiga.getGodinaObjavljivanja() + "|" +
 							knjiga.getOpis() + "|" + knjiga.getJezik() + "|"
-							+ knjiga.isObrisan() + "|"+ knjiga.getZanr() ;
+							+ knjiga.isObrisan() + "|"+ knjiga.getZanr().getId() ;
 				}
 				BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 				writer.write(content);
@@ -547,7 +552,7 @@ public class Biblioteka {
 						+ clanBiblioteke.getBrojMeseciClanarine() + "|"+ clanBiblioteke.isAktivan() + "|" 
 						+ clanBiblioteke.getId() + "|" + clanBiblioteke.getImeIPrezime() + "|" + 
 						 clanBiblioteke.getJMBG() + "|" +  clanBiblioteke.getAdresa() + "|" +
-						 clanBiblioteke.getPol() + "|"  + clanBiblioteke.isObrisan() + "|" + clanBiblioteke.getTipclanarine()  + "\n";
+						 clanBiblioteke.getPol() + "|"  + clanBiblioteke.isObrisan() + "|" + clanBiblioteke.getTipclanarine().getId()  + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(content);
@@ -597,5 +602,126 @@ public class Biblioteka {
 			}
 			return clanBiblioteke;
 		}
-}
 	
+	//IZNAJMLJIVANJE KNJIGE
+	public void upisiIznajmljivanjeKnjige(ArrayList<IznajmljivanjeKnjige> sveIznajmljivanje) {
+		try {
+			File file = new File("fajlovi/iznajmljivanjeknjige.txt");
+			String content = "";
+			for (IznajmljivanjeKnjige iznajmljivanjeKnjige : sveIznajmljivanje) {	
+				content += iznajmljivanjeKnjige.getDatumIznajmljivanja() + "|" + iznajmljivanjeKnjige.getDatumVracanja() + "|"
+						+ iznajmljivanjeKnjige.isObrisan() + "|" + iznajmljivanjeKnjige.getPrimerak().getId() +
+						 "|" + iznajmljivanjeKnjige.getClan().getId() + "|" + iznajmljivanjeKnjige.getAdministrator().getId() + "|" 
+						+ iznajmljivanjeKnjige.getBibliotekar().getId() +"\n";
+			}
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(content);
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom snimanja iznajmljivanja.");
+		}
+	}
+	
+		public ArrayList<IznajmljivanjeKnjige> ucitajIznajmljivanjeKnjige(String iznajmljivanjeKnjigeFajl) {
+			ArrayList<IznajmljivanjeKnjige> iznajmljivanjeKnjige = new ArrayList<IznajmljivanjeKnjige>();
+			try {
+				File file = new File(iznajmljivanjeKnjigeFajl);
+				BufferedReader reader = new BufferedReader(new FileReader(file));
+				String line;
+				while ((line = reader.readLine()) != null) {
+					String[] split = line.split("\\|");
+					LocalDate datumIznajmljivanja = LocalDate.parse(split[0]);
+					LocalDate datumVracanja = LocalDate.parse(split[1]);
+					Boolean obrisan = Boolean.parseBoolean(split[2]);
+					
+					ArrayList<PrimerakKnjige> primerci = ucitajPrimerakKnjige("fajlovi/primerakKnjige.txt");
+					PrimerakKnjige primerak1 = null;
+					for (PrimerakKnjige t : primerci) {
+						if(t.getId().equals(split[3])) {
+							primerak1 = t;
+						}
+					}
+					
+					ArrayList<ClanBiblioteke> clanovi = ucitajClanBiblioteke("fajlovi/clanBiblioteke.txt");
+					ClanBiblioteke clan1 = null;
+					for (ClanBiblioteke t : clanovi) {
+						if(t.getId().equals(split[4])) {
+							clan1 = t;
+						}
+					}
+				
+					ArrayList<Administrator> administratori = ucitajAdministratora("fajlovi/administratori.txt");
+					Administrator admin = null;
+					for (Administrator a : administratori) {
+						if(a.getId().equals(split[5])) {
+							admin = a;
+						}
+					}
+					
+					ArrayList<Bibliotekar> bibliotekari = ucitajBibliotekara("fajlovi/bibliotekar.txt");
+					Bibliotekar bibl = null;
+					for (Bibliotekar a : bibliotekari) {
+						if(a.getId().equals(split[6])) {
+							bibl = a;
+						}
+					}
+					IznajmljivanjeKnjige iznaj = new IznajmljivanjeKnjige(datumIznajmljivanja,datumVracanja, obrisan, primerak1, clan1,  admin, bibl);
+					iznajmljivanjeKnjige.add(iznaj);
+					
+				}
+				reader.close();
+			} catch (IOException e) {
+				System.out.println("Greska prilikom snimanja podataka o iznajmljivanju");
+				e.printStackTrace();
+			}
+			return iznajmljivanjeKnjige;
+		}
+	
+	//BIBLIOTEKA 
+	public void upisiBiblioteka(ArrayList<Biblioteka> sveBiblioteke) {
+		try {
+			File file = new File("fajlovi/biblioteka.txt");
+			String content = "";
+			for (Biblioteka biblioteka : sveBiblioteke) {	
+				content += biblioteka.getId() + "|"+ biblioteka.getNaziv()+ "|" + biblioteka.getAdresa()+ "|"
+			+ biblioteka.getTelefon()+ "|"+biblioteka.getRadnoVreme()+ "\n";
+			}
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(content);
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom snimanja biblioteke.");
+		}
+	}
+	
+		public ArrayList<Biblioteka> ucitajBiblioteka(String bibliotekaFajl) {
+			ArrayList<Biblioteka> biblioteka = new ArrayList<Biblioteka>();
+			try {
+				File file = new File(bibliotekaFajl);
+				BufferedReader reader = new BufferedReader(new FileReader(file));
+				String line;
+				while ((line = reader.readLine()) != null) {
+					String[] split = line.split("\\|");
+					String id= split[0];
+					String naziv= split[1];
+					String adresa = split[2];
+					String telefon = split[3];
+					String radnoVreme = split[4];
+					
+					Biblioteka bibliotek = new Biblioteka(id,naziv, adresa, telefon, radnoVreme);
+					biblioteka.add(bibliotek);
+					
+				}
+				reader.close();
+			} catch (IOException e) {
+				System.out.println("Greska prilikom snimanja podataka o biblioteci");
+				e.printStackTrace();
+			}
+			return biblioteka;
+		}
+	}
+	
+
+
+
+

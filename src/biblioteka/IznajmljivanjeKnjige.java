@@ -91,7 +91,7 @@ public class IznajmljivanjeKnjige {
 	
 	@Override
 	public String toString() {
-		return "IznajmljivanjeKnjige \ndatumIznajmljivanja=" + datumIznajmljivanja +
+		return "IznajmljivanjeKnjigedatumIznajmljivanja=" + datumIznajmljivanja +
 				"\ndatumVracanja=" + datumVracanja
 				+ "\nobrisan=" + obrisan +
 				"\nprimerak=" + primerak +
