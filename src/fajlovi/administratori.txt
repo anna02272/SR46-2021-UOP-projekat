@@ -1,1 +1,1 @@
-korisnickoIme|korisnickaLozinka|300000.0|id123|imeIPrezime|JMBG|adresa|ZENSKI|false
+ana|ana123|300000.0|id123|imeIPrezime|JMBG|adresa|ZENSKI|false

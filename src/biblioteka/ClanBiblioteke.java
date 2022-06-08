@@ -17,7 +17,7 @@ public class ClanBiblioteke extends Osoba {
     	this.brojClanskeKarte = "";
 		this.datumPoslednjeUplate = null;
 		this.brojMeseciClanarine = -1;
-		this.aktivan = false;
+		this.aktivan = true;
 		this.tipclanarine = null;	
     }
     

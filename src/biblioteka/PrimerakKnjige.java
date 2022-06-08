@@ -8,7 +8,7 @@ import enumeracije.EnumTipPoveza;
 public class PrimerakKnjige {
     
     private String id;
-    private String nazivKnjige;
+    private Knjiga nazivKnjige;
     private int brojStrana;
     private EnumTipPoveza tipPoveza;
     private EnumJezik jezik;
@@ -19,17 +19,17 @@ public class PrimerakKnjige {
     
     public PrimerakKnjige() {
     	this.id = "";
-		this.nazivKnjige = "";
+		this.nazivKnjige = null;
 		this.brojStrana = 0;
 		this.tipPoveza = EnumTipPoveza.MEK ;
 		this.jezik = EnumJezik.ENGLESKI;
 		this.godinaStampanja = null;
-		this.iznajmljena = false;
+		this.iznajmljena = true;
 		this.obrisan = false;
     }
     
     
-	public PrimerakKnjige(String id, String nazivKnjige, int brojStrana, EnumTipPoveza tipPoveza, EnumJezik jezik,
+	public PrimerakKnjige(String id, Knjiga nazivKnjige, int brojStrana, EnumTipPoveza tipPoveza, EnumJezik jezik,
 			LocalDate godinaStampanja, boolean iznajmljena, boolean obrisan) {
 		super();
 		this.id = id;
@@ -47,10 +47,10 @@ public class PrimerakKnjige {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getNazivKnjige() {
+	public Knjiga getNazivKnjige() {
 		return nazivKnjige;
 	}
-	public void setNazivKnjige(String nazivKnjige) {
+	public void setNazivKnjige(Knjiga nazivKnjige) {
 		this.nazivKnjige = nazivKnjige;
 	}
 	public int getBrojStrana() {
@@ -94,7 +94,7 @@ public class PrimerakKnjige {
 	@Override
 	public String toString() {
 		return "PrimerakKnjige \nid=" + id +
-				"\nnazivKnjige=" + nazivKnjige + 
+				"nazivKnjige=" + nazivKnjige + 
 				"\nbrojStrana=" + brojStrana
 				+ "\ntipPoveza=" + tipPoveza +
 				"\njezik=" + jezik +
