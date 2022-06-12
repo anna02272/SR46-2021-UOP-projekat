@@ -574,7 +574,7 @@ public class Biblioteka {
 						+ clanBiblioteke.getBrojMeseciClanarine() + "|"+ clanBiblioteke.isAktivan() + "|" 
 						+ clanBiblioteke.getId() + "|" + clanBiblioteke.getImeIPrezime() + "|" + 
 						 clanBiblioteke.getJMBG() + "|" +  clanBiblioteke.getAdresa() + "|" +
-						 clanBiblioteke.getPol() + "|"  + clanBiblioteke.isObrisan() + "|" + clanBiblioteke.getTipclanarine().getId() + "\n";
+						 clanBiblioteke.getPol() + "|"  + clanBiblioteke.isObrisan() + "|" + clanBiblioteke.getTipclanarine() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(content);
@@ -629,8 +629,8 @@ public class Biblioteka {
 			String content = "";
 			for (IznajmljivanjeKnjige iznajmljivanjeKnjige : iznajmljivanjeKnjige) {	
 				content += iznajmljivanjeKnjige.getDatumIznajmljivanja() + "|" + iznajmljivanjeKnjige.getDatumVracanja() + "|"
-						+ iznajmljivanjeKnjige.isObrisan() + "|" + iznajmljivanjeKnjige.getPrimerak().getId() +
-						 "|" + iznajmljivanjeKnjige.getClan().getId() + "|" + iznajmljivanjeKnjige.getAdministrator().getId() + "|" 
+						+ iznajmljivanjeKnjige.isObrisan() + "|" + iznajmljivanjeKnjige.getPrimerak() +
+						 "|" + iznajmljivanjeKnjige.getClan() + "|" + iznajmljivanjeKnjige.getAdministrator().getId() + "|" 
 						+ iznajmljivanjeKnjige.getBibliotekar().getId() +"\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));

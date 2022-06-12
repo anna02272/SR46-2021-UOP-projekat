@@ -104,15 +104,16 @@ public class Knjiga {
 
 	@Override
 	public String toString() {
-		return "Knjiga \nid=" + id +
-				"\nnaslovKnjige=" + naslovKnjige +
-				"\noriginalniNaslovKnjige="
+		return "Knjiga [id=" + id +
+				"|naslovKnjige=" + naslovKnjige +
+				"|originalniNaslovKnjige="
 				+ originalniNaslovKnjige +
-				"\npisac=" + pisac
-				+ "\ngodinaObjavljivanja=" + godinaObjavljivanja +
-				"\nopis=" + opis +
-				"\njezik=" + jezik +
-				"\nobrisan=" + obrisan + "\nzanr="+ zanr;
+				"|pisac=" + pisac
+				+ "|godinaObjavljivanja=" + godinaObjavljivanja +
+				"|opis=" + opis +
+				"|jezik=" + jezik +
+				"|obrisan=" + obrisan + "|zanr="+ zanr + "]"
+				;
 	}
 }
 

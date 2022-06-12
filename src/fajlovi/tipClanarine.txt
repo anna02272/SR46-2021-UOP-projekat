@@ -1,2 +1,3 @@
-idjsj|id234|123.0|false
-zz|ss|66.0|false
+idjsj|22|123.0|true
+idjsj|22|2.0|false
+1|clanarina|1000.0|false

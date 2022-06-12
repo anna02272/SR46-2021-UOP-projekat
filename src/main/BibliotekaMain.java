@@ -50,7 +50,6 @@ public class BibliotekaMain {
 		lp.setVisible(true);
 		
 		
-		
 //		System.out.println("PODACI IZ DATOTEKA:");
 //	
 //		Administrator testAdministrator = new Administrator("korisnickoIme", "korisnickaLozinka", 300000, "id123", "imeIPrezime",

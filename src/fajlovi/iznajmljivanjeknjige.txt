@@ -1,2 +1,17 @@
-w|w|false|idjsj|id2345|1|sdfs
-w|w|false|idjsj|id2345|1|sdfs
+w|w|false|PrimerakKnjige 
+id=idjsjnazivKnjige=Knjiga [id=22|naslovKnjige=Naslov|originalniNaslovKnjige=Orginalni|pisac=Pera|godinaObjavljivanja=1970|opis=Nananana|jezik=ENGLESKI|obrisan=false|zanr=ZanrKnjige [id=1, |oznaka=1, |opis=zanr, |obrisan=false]]
+brojStrana=123
+tipPoveza=MEK
+jezik=ENGLESKI
+godinaStampanja=2002-01-01
+iznajmljena=true
+obrisan=false|ClanBiblioteke brojClanskeKarte=br, datumPoslednjeUplate=22, brojMeseciClanarine=2, aktivan=true, tipclanarine=null, id=0, imeIPrezime=karta, JMBG=234565432, adresa=aa, pol=MUSKI, obrisan=false|1|sdfs
+w|w|false|null|null|1|sdfs
+q|q|false|PrimerakKnjige 
+id=idjsjnazivKnjige=Knjiga [id=22|naslovKnjige=Naslov|originalniNaslovKnjige=Orginalni|pisac=Pera|godinaObjavljivanja=1970|opis=Nananana|jezik=ENGLESKI|obrisan=false|zanr=ZanrKnjige [id=1, |oznaka=1, |opis=zanr, |obrisan=false]]
+brojStrana=123
+tipPoveza=MEK
+jezik=ENGLESKI
+godinaStampanja=2002-01-01
+iznajmljena=true
+obrisan=false|ClanBiblioteke brojClanskeKarte=br, datumPoslednjeUplate=22, brojMeseciClanarine=2, aktivan=true, tipclanarine=null, id=0, imeIPrezime=karta, JMBG=234565432, adresa=aa, pol=MUSKI, obrisan=false|1|sdfs
