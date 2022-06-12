@@ -1,1 +1,2 @@
-id23|naziv|30000.0|false
+idjsj|id234|123.0|false
+zz|ss|66.0|false

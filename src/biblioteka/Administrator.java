@@ -33,6 +33,10 @@ public class Administrator extends Zaposleni {
 	}
 
 	
+
+
+
+	
     
 
 }

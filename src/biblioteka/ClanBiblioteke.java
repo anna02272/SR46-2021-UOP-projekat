@@ -7,7 +7,7 @@ import enumeracije.EnumPol;
 public class ClanBiblioteke extends Osoba {
 
     private String brojClanskeKarte;
-    private LocalDate datumPoslednjeUplate;
+    private String datumPoslednjeUplate;
     private int brojMeseciClanarine;
     private boolean aktivan;
     private TipClanarine tipclanarine;
@@ -21,7 +21,7 @@ public class ClanBiblioteke extends Osoba {
 		this.tipclanarine = null;	
     }
     
-	public ClanBiblioteke(String brojClanskeKarte, LocalDate datumPoslednjeUplate, int brojMeseciClanarine,
+	public ClanBiblioteke(String brojClanskeKarte, String datumPoslednjeUplate, int brojMeseciClanarine,
 			boolean aktivan, String id, String imeIPrezime, String JMBG, String adresa, EnumPol pol, boolean obrisan, TipClanarine tipclanarine) {
 		super(id, imeIPrezime, JMBG, adresa, pol, obrisan);
 		this.brojClanskeKarte = brojClanskeKarte;
@@ -38,10 +38,10 @@ public class ClanBiblioteke extends Osoba {
 	public void setBrojClanskeKarte(String brojClanskeKarte) {
 		this.brojClanskeKarte = brojClanskeKarte;
 	}
-	public LocalDate getDatumPoslednjeUplate() {
+	public String getDatumPoslednjeUplate() {
 		return datumPoslednjeUplate;
 	}
-	public void setDatumPoslednjeUplate(LocalDate datumPoslednjeUplate) {
+	public void setDatumPoslednjeUplate(String datumPoslednjeUplate) {
 		this.datumPoslednjeUplate = datumPoslednjeUplate;
 	}
 	public int getBrojMeseciClanarine() {

@@ -1,1 +1,2 @@
-id098|oznaka|opis|false
+11|11|11|false
+gg|hgg|jj|false

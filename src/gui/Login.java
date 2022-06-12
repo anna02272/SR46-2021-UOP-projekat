@@ -33,7 +33,8 @@ public class Login extends JFrame {
 		setTitle("Prijava");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setSize(250,200);
+		setSize(200,200);
+		setLocation(500,300);
 		initGUI();
 		initActions();
 		pack();
@@ -51,6 +52,9 @@ public class Login extends JFrame {
 		add(new JLabel());
 		add(btnOk);
 		
+		
+		txtKorisnickoIme.setText("ana");
+		pfPassword.setText("ana123");
 		getRootPane().setDefaultButton(btnOk);
 	}
 	

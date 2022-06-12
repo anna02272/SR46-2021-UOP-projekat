@@ -20,16 +20,16 @@ import gui.Login;
 import enumeracije.EnumJezik;
 
 public class BibliotekaMain {
-		private static final String KNJIGE_FAJL = "fajlovi/knjige.txt";
-		private static final String ZAPOSLENI_FAJL = "fajlovi/zaposleni.txt";
-		private static final String ADMINISTRATOR_FAJL = "fajlovi/administratori.txt";
-		private static final String BIBLIOTEKAR_FAJL = "fajlovi/bibliotekar.txt";
-		private static final String CLANBIBLIOTEKE_FAJL = "fajlovi/clanBiblioteke.txt";
-		private static final String IZNAJMLJIVANJEKNJIGE_FAJL = "fajlovi/iznajmljivanjeknjige.txt";
-		private static final String PRIMERAKKNJIGE_FAJL = "fajlovi/primerakKnjige.txt";
-		private static final String TIPCLANARINE_FAJL = "fajlovi/tipClanarine.txt";
-		private static final String ZANR_FAJL = "fajlovi/zanr.txt";
-		private static final String BIBLIOTEKA_FAJL = "fajlovi/biblioteka.txt";
+		public static final String KNJIGE_FAJL = "fajlovi/knjige.txt";
+		public static final String ZAPOSLENI_FAJL = "fajlovi/zaposleni.txt";
+		public static final String ADMINISTRATOR_FAJL = "fajlovi/administratori.txt";
+		public static final String BIBLIOTEKAR_FAJL = "fajlovi/bibliotekar.txt";
+		public static final String CLANBIBLIOTEKE_FAJL = "fajlovi/clanBiblioteke.txt";
+		public static final String IZNAJMLJIVANJEKNJIGE_FAJL = "fajlovi/iznajmljivanjeknjige.txt";
+		public static final String PRIMERAKKNJIGE_FAJL = "fajlovi/primerakKnjige.txt";
+		public static final String TIPCLANARINE_FAJL = "fajlovi/tipClanarine.txt";
+		public static final String ZANR_FAJL = "fajlovi/zanr.txt";
+		public static final String BIBLIOTEKA_FAJL = "fajlovi/biblioteka.txt";
 	
 	
 	
@@ -40,10 +40,11 @@ public class BibliotekaMain {
 		bibliotekaNova.ucitajBiblioteka(BIBLIOTEKA_FAJL);
 		bibliotekaNova.ucitajClanBiblioteke(CLANBIBLIOTEKE_FAJL);
 		bibliotekaNova.ucitajIznajmljivanjeKnjige(IZNAJMLJIVANJEKNJIGE_FAJL);
+		bibliotekaNova.ucitajZanrKnjige(ZANR_FAJL);
 		bibliotekaNova.ucitajKnjige(KNJIGE_FAJL);
 		bibliotekaNova.ucitajPrimerakKnjige(PRIMERAKKNJIGE_FAJL);
 		bibliotekaNova.ucitajTipClanarine(PRIMERAKKNJIGE_FAJL);
-		bibliotekaNova.ucitajZanrKnjige(ZANR_FAJL);
+		
 		bibliotekaNova.ucitajClanBiblioteke(CLANBIBLIOTEKE_FAJL);
 		
 		
@@ -53,6 +54,7 @@ public class BibliotekaMain {
 	
 		Login lp = new Login(bibliotekaNova);
 		lp.setVisible(true);
+		
 		
 		
 //		System.out.println("PODACI IZ DATOTEKA:");

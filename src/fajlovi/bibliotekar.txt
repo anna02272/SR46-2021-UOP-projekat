@@ -1,1 +1,2 @@
-maja|maja123|300000.0|id123|imeIPrezime|JMBG|adresa|ZENSKI|false
+anaaaa|ana|2345.0|sdfs|dfg|345|dfg|ZENSKI|false
+eede|44|44.0|44|44|44|44|MUSKI|false

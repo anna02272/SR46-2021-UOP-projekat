@@ -12,7 +12,7 @@ public class PrimerakKnjige {
     private int brojStrana;
     private EnumTipPoveza tipPoveza;
     private EnumJezik jezik;
-    private LocalDate godinaStampanja;
+    private String godinaStampanja;
     private boolean iznajmljena;
     private boolean obrisan;
     
@@ -30,7 +30,7 @@ public class PrimerakKnjige {
     
     
 	public PrimerakKnjige(String id, Knjiga nazivKnjige, int brojStrana, EnumTipPoveza tipPoveza, EnumJezik jezik,
-			LocalDate godinaStampanja, boolean iznajmljena, boolean obrisan) {
+			String godinaStampanja, boolean iznajmljena, boolean obrisan) {
 		super();
 		this.id = id;
 		this.nazivKnjige = nazivKnjige;
@@ -65,10 +65,10 @@ public class PrimerakKnjige {
 	public void setTipPoveza(EnumTipPoveza tipPoveza) {
 		this.tipPoveza = tipPoveza;
 	}
-	public LocalDate getGodinaStampanja() {
+	public String getGodinaStampanja() {
 		return godinaStampanja;
 	}
-	public void setGodinaStampanja(LocalDate godinaStampanja) {
+	public void setGodinaStampanja(String godinaStampanja) {
 		this.godinaStampanja = godinaStampanja;
 	}
 	public boolean isIznajmljena() {
