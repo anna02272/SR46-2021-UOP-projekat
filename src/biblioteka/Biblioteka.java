@@ -574,7 +574,7 @@ public class Biblioteka {
 						+ clanBiblioteke.getBrojMeseciClanarine() + "|"+ clanBiblioteke.isAktivan() + "|" 
 						+ clanBiblioteke.getId() + "|" + clanBiblioteke.getImeIPrezime() + "|" + 
 						 clanBiblioteke.getJMBG() + "|" +  clanBiblioteke.getAdresa() + "|" +
-						 clanBiblioteke.getPol() + "|"  + clanBiblioteke.isObrisan() + "|" + clanBiblioteke.getTipclanarine().getId()  + "\n";
+						 clanBiblioteke.getPol() + "|"  + clanBiblioteke.isObrisan() + "|" + clanBiblioteke.getTipclanarine().getId() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(content);
@@ -930,9 +930,9 @@ public class Biblioteka {
 			}
 			return null;
 		}
-		public IznajmljivanjeKnjige nadjiIznajmljivanje(String DatumIznajmljivanja) {
+		public IznajmljivanjeKnjige nadjiIznajmljivanje(String datumIznajmljivanja) {
 			for (IznajmljivanjeKnjige iznajmljivanjeKnjige : iznajmljivanjeKnjige) {
-				if (iznajmljivanjeKnjige.getDatumIznajmljivanja().equals(DatumIznajmljivanja)) {
+				if (iznajmljivanjeKnjige.getDatumIznajmljivanja().equals(datumIznajmljivanja)) {
 					return iznajmljivanjeKnjige;
 				}
 			}

@@ -170,7 +170,7 @@ public class KnjigaForma extends JFrame{
 		txtOpis.setText(knjiga.getOpis());
 		Jezik.setSelectedItem(knjiga.getJezik());
 		txtObrisan.setSelected(knjiga.isObrisan());
-		cbZanr.setSelectedItem(knjiga.getZanr().getId());	
+		cbZanr.setSelectedItem(knjiga.getZanr());	
 	}
 	
 	

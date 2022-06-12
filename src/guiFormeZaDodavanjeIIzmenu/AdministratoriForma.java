@@ -143,10 +143,7 @@ public class AdministratoriForma extends JFrame{
 						administrator.setPol(pol);
 						administrator.setObrisan(obrisan);
 					}
-//					Administrator testAdministrator = new Administrator(korisnickoIme, KorisnickaLozinka, plata, id, imeIPrezime, JMBG, adresa, pol , false) ;
-//					ArrayList<Administrator> sviAdmini = new ArrayList<Administrator>();
-//					sviAdmini.add(testAdministrator);
-//					biblioteka.upisiAdministratora(sviAdmini);
+//					
 					biblioteka.upisiAdministratora(BibliotekaMain.ADMINISTRATOR_FAJL);
 					AdministratoriForma.this.dispose();
 					AdministratoriForma.this.setVisible(false);

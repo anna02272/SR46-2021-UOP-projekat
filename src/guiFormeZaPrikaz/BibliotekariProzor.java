@@ -116,7 +116,7 @@ import biblioteka.Biblioteka;
 							bibliotekar.setObrisan(true);
 							tableModel.removeRow(red);
 							
-							//biblioteka.upisiBibliotekara("fajlovi/bibliotekari.txt");
+							biblioteka.upisiBibliotekara("fajlovi/bibliotekari.txt");
 						}
 					}
 				}
@@ -138,16 +138,16 @@ import biblioteka.Biblioteka;
 					if(red == -1) {
 						JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 					}else {
-						String korisnickoIme = tableModel.getValueAt(red, 0).toString();
-						Bibliotekar bibliotekar = biblioteka.nadjiBibliotekara(korisnickoIme);
-//						if(bibliotekar == null) {
-//							JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja bibliotekara sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
-//						}else {
+						String Id = tableModel.getValueAt(red, 3).toString();
+						Bibliotekar bibliotekar = biblioteka.nadjiBibliotekara(Id);
+						if(bibliotekar == null) {
+							JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja bibliotekara sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
+						}else {
 							BibliotekariForma pf = new BibliotekariForma(biblioteka, bibliotekar);
 							pf.setVisible(true);
 						}
 					}
-//				}
+			}
 			});
 		}
 	}

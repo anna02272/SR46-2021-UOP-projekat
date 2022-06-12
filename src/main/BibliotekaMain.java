@@ -44,14 +44,8 @@ public class BibliotekaMain {
 		bibliotekaNova.ucitajKnjige(KNJIGE_FAJL);
 		bibliotekaNova.ucitajPrimerakKnjige(PRIMERAKKNJIGE_FAJL);
 		bibliotekaNova.ucitajTipClanarine(PRIMERAKKNJIGE_FAJL);
-		
 		bibliotekaNova.ucitajClanBiblioteke(CLANBIBLIOTEKE_FAJL);
-		
-		
-//		BibliotekaGUI mf = new BibliotekaGUI();
-//	    mf.setVisible(true);
-//		}
-	
+
 		Login lp = new Login(bibliotekaNova);
 		lp.setVisible(true);
 		

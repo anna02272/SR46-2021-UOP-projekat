@@ -170,8 +170,6 @@ public class BibliotekariForma extends JFrame{
 		boolean ok = true;
 		String poruka = "Molimo popravite sledece greske u unosu:\n";
 		
-		//String korisnickoIme, String korisnickaLozinka, double plata, String id, String imeIPrezime,
-		//String JMBG, String adresa, EnumPol pol, boolean obrisa
 		
 		if(txtId.getText().trim().equals("")) {
 			poruka += "- Unesite id\n";

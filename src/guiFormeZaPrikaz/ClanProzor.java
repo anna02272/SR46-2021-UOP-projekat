@@ -109,7 +109,7 @@ public class ClanProzor extends JFrame{
 				if(red == -1) {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
-					String Id = tableModel.getValueAt(red, 0).toString();
+					String Id = tableModel.getValueAt(red, 3).toString();
 					ClanBiblioteke clanBiblioteke = biblioteka.nadjiClanove(Id);
 					
 					int izbor = JOptionPane.showConfirmDialog(null, 
@@ -140,14 +140,16 @@ public class ClanProzor extends JFrame{
 				if(red == -1) {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
-					String Id = tableModel.getValueAt(red, 0).toString();
+					String Id = tableModel.getValueAt(red, 3).toString();
 					ClanBiblioteke clanBiblioteke = biblioteka.nadjiClanove(Id);
-//					
+					if(clanBiblioteke == null) {
+					JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja clana sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
+				}else {
 						ClanForma pf = new ClanForma(biblioteka, clanBiblioteke);
 						pf.setVisible(true);
 					}
 				}
-//			}
+			}
 		});
 	}
 }

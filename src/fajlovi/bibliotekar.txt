@@ -1,2 +1,3 @@
-anaaaa|ana|2345.0|sdfs|dfg|345|dfg|ZENSKI|false
-eede|44|44.0|44|44|44|44|MUSKI|false
+bibliotekar|123|234500.0|sdfs|bibl b|34523456776543|Bibl|MUSKI|false
+Mirk|444|44000.0|44|Mrik|34567323|Mirk|MUSKI|false
+bibl|f34|44000.0|f|Bibl|12345678876543|Bibl|ZENSKI|true
