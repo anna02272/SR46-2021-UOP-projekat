@@ -280,7 +280,6 @@ public class Biblioteka {
 					}
 					Boolean obrisan = Boolean.parseBoolean(split[8]);
 					Administrator admin = new Administrator(korisnickoIme,korisnickaLozinka,plata,id,imePrezime,JMBG,adresa,pol1,obrisan);
-					System.out.println(administratori);
 					administratori.add(admin);
 					
 				}

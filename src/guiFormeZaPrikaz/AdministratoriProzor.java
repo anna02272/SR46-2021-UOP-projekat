@@ -31,7 +31,7 @@ public class AdministratoriProzor extends JFrame{
 	private JButton btnAdd = new JButton();
 	private JButton btnEdit = new JButton();
 	private JButton btnDelete = new JButton();
-	private JButton btnRead = new JButton();
+//	private JButton btnRead = new JButton();
 	
 	private DefaultTableModel tableModel;
 	private JTable administratoriTabela;
@@ -53,9 +53,9 @@ public class AdministratoriProzor extends JFrame{
 		slAdd = new ImageIcon(Toolkit.getDefaultToolkit().getImage(putanjaAdd).getScaledInstance(28, 28,Image.SCALE_DEFAULT));
 		btnAdd.setIcon(slAdd);
 		
-		putanjaRead = "slike/read.png";
-		slRead = new ImageIcon(Toolkit.getDefaultToolkit().getImage(putanjaRead).getScaledInstance(28, 28,Image.SCALE_DEFAULT));
-		btnRead.setIcon(slRead);
+//		putanjaRead = "slike/read.png";
+//		slRead = new ImageIcon(Toolkit.getDefaultToolkit().getImage(putanjaRead).getScaledInstance(28, 28,Image.SCALE_DEFAULT));
+//		btnRead.setIcon(slRead);
 		
 		putanjaUpdate = "slike/update.png";
 		slUpdate = new ImageIcon(Toolkit.getDefaultToolkit().getImage(putanjaUpdate).getScaledInstance(28, 28,Image.SCALE_DEFAULT));
@@ -67,7 +67,7 @@ public class AdministratoriProzor extends JFrame{
 		
 		
 		mainToolbar.add(btnAdd);
-		mainToolbar.add(btnRead);
+//		mainToolbar.add(btnRead);
 		mainToolbar.add(btnEdit);
 		mainToolbar.add(btnDelete);
 		add(mainToolbar, BorderLayout.NORTH);
