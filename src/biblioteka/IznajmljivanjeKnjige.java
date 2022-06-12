@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class IznajmljivanjeKnjige {
 
-    private LocalDate datumIznajmljivanja;
-    private LocalDate datumVracanja;
+    private String datumIznajmljivanja;
+    private String datumVracanja;
     private boolean obrisan;
     private PrimerakKnjige primerak;
     private ClanBiblioteke clan;
@@ -23,7 +23,7 @@ public class IznajmljivanjeKnjige {
 		this.bibliotekar = null;
     }
     
-	public IznajmljivanjeKnjige(LocalDate datumIznajmljivanja, LocalDate datumVracanja, boolean obrisan, 
+	public IznajmljivanjeKnjige(String datumIznajmljivanja, String datumVracanja, boolean obrisan, 
 			PrimerakKnjige primerak, ClanBiblioteke clan, Administrator administrator, Bibliotekar bibliotekar) {
 		super();
 		this.datumIznajmljivanja = datumIznajmljivanja;
@@ -35,16 +35,16 @@ public class IznajmljivanjeKnjige {
 		this.bibliotekar = bibliotekar;
 	}
 
-	public LocalDate getDatumIznajmljivanja() {
+	public String getDatumIznajmljivanja() {
 		return datumIznajmljivanja;
 	}
-	public void setDatumIznajmljivanja(LocalDate datumIznajmljivanja) {
+	public void setDatumIznajmljivanja(String datumIznajmljivanja) {
 		this.datumIznajmljivanja = datumIznajmljivanja;
 	}
-	public LocalDate getDatumVracanja() {
+	public String getDatumVracanja() {
 		return datumVracanja;
 	}
-	public void setDatumVracanja(LocalDate datumVracanja) {
+	public void setDatumVracanja(String datumVracanja) {
 		this.datumVracanja = datumVracanja;
 	}
 

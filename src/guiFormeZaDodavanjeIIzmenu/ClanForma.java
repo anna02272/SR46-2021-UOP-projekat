@@ -153,8 +153,8 @@ public class ClanForma extends JFrame{
 					Boolean aktivan = txtAktivan.isSelected();
 					
 					if(clanBiblioteke == null) { // DODAVANJE:
-					//	String id1 = Integer.toString(biblioteka.getClanoviBiblioteke().size());
-						ClanBiblioteke novi = new ClanBiblioteke(brojClanskeKarte, datumPoslednjeUplate, brojMeseciClanarine,true, id, imeIPrezime, JMBG, adresa, pol,false ,tipClanarine);
+//						String id1 = Integer.toString(biblioteka.getClanoviBiblioteke().size());
+						ClanBiblioteke novi = new ClanBiblioteke(brojClanskeKarte, datumPoslednjeUplate, brojMeseciClanarine,true, id1, imeIPrezime, JMBG, adresa, pol,false ,tipClanarine);
 						biblioteka.getClanoviBiblioteke().add(novi);
 					}else { // IZMENA:
 						clanBiblioteke.setBrojClanskeKarte(brojClanskeKarte);

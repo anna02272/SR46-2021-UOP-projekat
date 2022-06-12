@@ -649,8 +649,8 @@ public class Biblioteka {
 				String line;
 				while ((line = reader.readLine()) != null) {
 					String[] split = line.split("\\|");
-					LocalDate datumIznajmljivanja = LocalDate.parse(split[0]);
-					LocalDate datumVracanja = LocalDate.parse(split[1]);
+					String datumIznajmljivanja = split[0];
+					String datumVracanja = split[1];
 					Boolean obrisan = Boolean.parseBoolean(split[2]);
 					
 					PrimerakKnjige primerak1 = null;
@@ -931,7 +931,7 @@ public class Biblioteka {
 			}
 			return null;
 		}
-		public IznajmljivanjeKnjige nadjiIznajmljivanje(LocalDate DatumIznajmljivanja) {
+		public IznajmljivanjeKnjige nadjiIznajmljivanje(String DatumIznajmljivanja) {
 			for (IznajmljivanjeKnjige iznajmljivanjeKnjige : iznajmljivanjeKnjige) {
 				if (iznajmljivanjeKnjige.getDatumIznajmljivanja().equals(DatumIznajmljivanja)) {
 					return iznajmljivanjeKnjige;
