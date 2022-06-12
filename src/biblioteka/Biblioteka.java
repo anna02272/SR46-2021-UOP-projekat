@@ -629,8 +629,8 @@ public class Biblioteka {
 			String content = "";
 			for (IznajmljivanjeKnjige iznajmljivanjeKnjige : iznajmljivanjeKnjige) {	
 				content += iznajmljivanjeKnjige.getDatumIznajmljivanja() + "|" + iznajmljivanjeKnjige.getDatumVracanja() + "|"
-						+ iznajmljivanjeKnjige.isObrisan() + "|" + iznajmljivanjeKnjige.getPrimerak() +
-						 "|" + iznajmljivanjeKnjige.getClan() + "|" + iznajmljivanjeKnjige.getAdministrator().getId() + "|" 
+						+ iznajmljivanjeKnjige.isObrisan() + "|" + iznajmljivanjeKnjige.getPrimerak().getId() +
+						 "|" + iznajmljivanjeKnjige.getClan().getId() + "|" + iznajmljivanjeKnjige.getAdministrator().getId() + "|" 
 						+ iznajmljivanjeKnjige.getBibliotekar().getId() +"\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
