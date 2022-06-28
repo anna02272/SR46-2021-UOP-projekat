@@ -3,9 +3,11 @@ package guiFormeZaDodavanjeIIzmenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -133,20 +135,20 @@ public class PrimerakForma extends JFrame{
 					int knjigaId = cbKnjiga.getSelectedIndex();
 					String id = txtId.getText().trim();
 					Knjiga knjiga = biblioteka.sviNeobrisaniKnjiga().get(knjigaId);
-					Integer brojStrana = Integer.parseInt(txtBrojStrana.getText().trim());
+					int brojStrana = Integer.parseInt(txtBrojStrana.getText().trim());
 					EnumTipPoveza tipPoveza = (EnumTipPoveza)Tip.getSelectedItem();
 					EnumJezik jezik = (EnumJezik)Jezik.getSelectedItem();
-					String godinaStampanja= txtGodinaStampanja.getText().trim();
+					Integer godinaStampanja= Integer.parseInt(txtGodinaStampanja.getText().trim());
 					Boolean iznajmljena = txtIznajmljena.isSelected();
 					Boolean obrisan = txtObrisan.isSelected();
 					
 					if(primerakKnjige == null) { // DODAVANJE:
-						String id1 = Integer.toString(biblioteka.getPrimerakKnjiga().size());
-						PrimerakKnjige novi = new PrimerakKnjige(id1, knjiga, brojStrana, tipPoveza, jezik, godinaStampanja, true  , false);
-						biblioteka.getPrimerakKnjiga().add(novi);
+//						String id1 = Integer.toString(biblioteka.getPrimerakKnjiga().size());
+						PrimerakKnjige novi = new PrimerakKnjige(id, knjiga, brojStrana, tipPoveza, jezik, godinaStampanja, true  , false);
+						biblioteka.dodajPrimerak(novi);
 					}else { // IZMENA:
 						primerakKnjige.setId(id);
-						primerakKnjige.setNazivKnjige(knjiga);
+						primerakKnjige.setKnjiga(knjiga);
 						primerakKnjige.setBrojStrana(brojStrana);
 						primerakKnjige.setTipPoveza(tipPoveza);
 						primerakKnjige.setJezik(jezik);
@@ -167,7 +169,7 @@ public class PrimerakForma extends JFrame{
 	
 	private void popuniPolja() {
 		txtId.setText(primerakKnjige.getId());
-		cbKnjiga.setSelectedItem(primerakKnjige.getNazivKnjige());
+		cbKnjiga.setSelectedItem(primerakKnjige.getKnjiga());
 		txtBrojStrana.setText(String.valueOf(primerakKnjige.getBrojStrana()));
 		Tip.setSelectedItem(primerakKnjige.getTipPoveza());
 		Jezik.setSelectedItem(primerakKnjige.getJezik());
@@ -179,6 +181,7 @@ public class PrimerakForma extends JFrame{
 	private boolean validacija() {
 		boolean ok = true;
 		String poruka = "Molimo popravite sledece greske u unosu:\n";
+				
 		
 		if(txtId.getText().trim().equals("")) {
 			poruka += "- Unesite ID\n";
@@ -187,7 +190,7 @@ public class PrimerakForma extends JFrame{
 			String Id = txtId.getText().trim();
 			PrimerakKnjige pronadjeni = biblioteka.nadjiPrimerak(Id);
 			if(pronadjeni != null) {
-				poruka += "- Primerak knjiige sa tim korisnickim imenom vec postoji\n";
+				poruka += "- Primerak knjiige sa tim id-om\n";
 				ok = false;
 			}
 		}
@@ -208,5 +211,6 @@ public class PrimerakForma extends JFrame{
 		
 		return ok;
 	}
-}
+		
+	   }
 

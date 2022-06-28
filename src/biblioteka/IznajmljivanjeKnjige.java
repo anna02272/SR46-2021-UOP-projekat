@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class IznajmljivanjeKnjige {
 
-    private String datumIznajmljivanja;
-    private String datumVracanja;
+    private LocalDate datumIznajmljivanja;
+    private LocalDate  datumVracanja;
     private boolean obrisan;
     private PrimerakKnjige primerak;
     private ClanBiblioteke clan;
@@ -23,7 +23,7 @@ public class IznajmljivanjeKnjige {
 		this.bibliotekar = null;
     }
     
-	public IznajmljivanjeKnjige(String datumIznajmljivanja, String datumVracanja, boolean obrisan, 
+	public IznajmljivanjeKnjige(LocalDate  datumIznajmljivanja,LocalDate  datumVracanja, boolean obrisan, 
 			PrimerakKnjige primerak, ClanBiblioteke clan, Administrator administrator, Bibliotekar bibliotekar) {
 		super();
 		this.datumIznajmljivanja = datumIznajmljivanja;
@@ -35,16 +35,16 @@ public class IznajmljivanjeKnjige {
 		this.bibliotekar = bibliotekar;
 	}
 
-	public String getDatumIznajmljivanja() {
+	public LocalDate  getDatumIznajmljivanja() {
 		return datumIznajmljivanja;
 	}
-	public void setDatumIznajmljivanja(String datumIznajmljivanja) {
+	public void setDatumIznajmljivanja(LocalDate  datumIznajmljivanja) {
 		this.datumIznajmljivanja = datumIznajmljivanja;
 	}
-	public String getDatumVracanja() {
+	public LocalDate  getDatumVracanja() {
 		return datumVracanja;
 	}
-	public void setDatumVracanja(String datumVracanja) {
+	public void setDatumVracanja(LocalDate  datumVracanja) {
 		this.datumVracanja = datumVracanja;
 	}
 
@@ -91,12 +91,12 @@ public class IznajmljivanjeKnjige {
 	
 	@Override
 	public String toString() {
-		return "IznajmljivanjeKnjigedatumIznajmljivanja=" + datumIznajmljivanja +
-				"\ndatumVracanja=" + datumVracanja
-				+ "\nobrisan=" + obrisan +
-				"\nprimerak=" + primerak +
-				"\nclan=" + clan
-				+ "\nadministrator=" + administrator +
-				"\nbibliotekar=" + bibliotekar ;
+		return "Iznajmljivanje [datumIznajmljivanja=" + datumIznajmljivanja +
+				"|datumVracanja=" + datumVracanja
+				+ "|obrisan=" + obrisan +
+				"|primerak=" + primerak +
+				"|clan=" + clan
+				+ "|administrator=" + administrator +
+				"|bibliotekar=" + bibliotekar + "]" ;
 	}
 }

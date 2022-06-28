@@ -8,32 +8,32 @@ import enumeracije.EnumTipPoveza;
 public class PrimerakKnjige {
     
     private String id;
-    private Knjiga nazivKnjige;
+    private Knjiga knjiga;
     private int brojStrana;
     private EnumTipPoveza tipPoveza;
     private EnumJezik jezik;
-    private String godinaStampanja;
+    private int godinaStampanja;
     private boolean iznajmljena;
     private boolean obrisan;
     
     
     public PrimerakKnjige() {
     	this.id = "";
-		this.nazivKnjige = null;
+		this.knjiga = null;
 		this.brojStrana = 0;
 		this.tipPoveza = EnumTipPoveza.MEK ;
 		this.jezik = EnumJezik.ENGLESKI;
-		this.godinaStampanja = null;
+		this.godinaStampanja = 0;
 		this.iznajmljena = true;
 		this.obrisan = false;
     }
     
     
-	public PrimerakKnjige(String id, Knjiga nazivKnjige, int brojStrana, EnumTipPoveza tipPoveza, EnumJezik jezik,
-			String godinaStampanja, boolean iznajmljena, boolean obrisan) {
+	public PrimerakKnjige(String id, Knjiga knjiga, int brojStrana, EnumTipPoveza tipPoveza, EnumJezik jezik,
+			int godinaStampanja, boolean iznajmljena, boolean obrisan) {
 		super();
 		this.id = id;
-		this.nazivKnjige = nazivKnjige;
+		this.knjiga = knjiga;
 		this.brojStrana = brojStrana;
 		this.tipPoveza = tipPoveza;
 		this.jezik = jezik;
@@ -47,11 +47,11 @@ public class PrimerakKnjige {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Knjiga getNazivKnjige() {
-		return nazivKnjige;
+	public Knjiga getKnjiga() {
+		return knjiga;
 	}
-	public void setNazivKnjige(Knjiga nazivKnjige) {
-		this.nazivKnjige = nazivKnjige;
+	public void setKnjiga(Knjiga knjiga) {
+		this.knjiga = knjiga;
 	}
 	public int getBrojStrana() {
 		return brojStrana;
@@ -65,10 +65,10 @@ public class PrimerakKnjige {
 	public void setTipPoveza(EnumTipPoveza tipPoveza) {
 		this.tipPoveza = tipPoveza;
 	}
-	public String getGodinaStampanja() {
+	public int getGodinaStampanja() {
 		return godinaStampanja;
 	}
-	public void setGodinaStampanja(String godinaStampanja) {
+	public void setGodinaStampanja(int godinaStampanja) {
 		this.godinaStampanja = godinaStampanja;
 	}
 	public boolean isIznajmljena() {
@@ -93,14 +93,14 @@ public class PrimerakKnjige {
 
 	@Override
 	public String toString() {
-		return "PrimerakKnjige \nid=" + id +
-				"nazivKnjige=" + nazivKnjige + 
-				"\nbrojStrana=" + brojStrana
-				+ "\ntipPoveza=" + tipPoveza +
-				"\njezik=" + jezik +
-				"\ngodinaStampanja=" + godinaStampanja
-				+ "\niznajmljena=" + iznajmljena +
-				"\nobrisan=" + obrisan;
+		return "PrimerakKnjige [id=" + id +
+				"|naslovKnjige=" + knjiga + 
+				"|brojStrana=" + brojStrana
+				+ "|tipPoveza=" + tipPoveza +
+				"|jezik=" + jezik +
+				"|godinaStampanja=" + godinaStampanja
+				+ "|iznajmljena=" + iznajmljena +
+				"|obrisan=" + obrisan +"]";
 	}
 
 

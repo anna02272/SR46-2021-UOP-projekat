@@ -19,12 +19,12 @@ public class Administrator extends Zaposleni {
 
 	@Override
 	public String toString() {
-		return "Administrator \nkorisnickoIme=" + korisnickoIme +
-				"\nkorisnickaLozinka=" + korisnickaLozinka +
-				"\nplata="
-				+ plata + "\nid=" + id + "\nimeIPrezime=" + imeIPrezime +
-				"\nJMBG=" + JMBG + "\nadresa=" + adresa
-				+ "\npol=" + pol + "\nobrisan=" + obrisan ;
+		return "Administrator [korisnickoIme=" + korisnickoIme +
+				"|korisnickaLozinka=" + korisnickaLozinka +
+				"|plata="
+				+ plata + "|id=" + id + "|imeIPrezime=" + imeIPrezime +
+				"|JMBG=" + JMBG + "|adresa=" + adresa
+				+ "|pol=" + pol + "|obrisan=" + obrisan + "]";
 	}
 
 	public String getIdOsoba() {

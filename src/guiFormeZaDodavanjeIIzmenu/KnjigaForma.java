@@ -76,7 +76,7 @@ public class KnjigaForma extends JFrame{
 	private void initGUI() {
 		ArrayList<ZanrKnjige> zanrovi = biblioteka.sviNeobrisaniZanr();
 		for (ZanrKnjige zanrKnjige: zanrovi) {
-			cbZanr.addItem(zanrKnjige.getId());
+			cbZanr.addItem(zanrKnjige.getOznaka());
 		}
 		
 		MigLayout layout = new MigLayout("wrap 2", "[][]", "[][][][][]20[]");
@@ -137,7 +137,6 @@ public class KnjigaForma extends JFrame{
 					ZanrKnjige zanrKnjige  = biblioteka.sviNeobrisaniZanr().get(zanrId);					
 					
 					if(knjiga == null) { // DODAVANJE:
-						//String id= Integer.toString(biblioteka.getKnjige().size());	
 						Knjiga novi = new Knjiga(id, naslovKnjige, originalniNaslovKnjige, pisac,godinaObjavljivanja, opis, jezik, false, zanrKnjige);
 						biblioteka.dodajKnjigu(novi); 
 					}else { // IZMENA:
@@ -170,7 +169,7 @@ public class KnjigaForma extends JFrame{
 		txtOpis.setText(knjiga.getOpis());
 		Jezik.setSelectedItem(knjiga.getJezik());
 		txtObrisan.setSelected(knjiga.isObrisan());
-		cbZanr.setSelectedItem(knjiga.getZanr());	
+		cbZanr.setSelectedItem(knjiga.getZanr().getOznaka());	
 	}
 	
 	
@@ -196,10 +195,7 @@ public class KnjigaForma extends JFrame{
 			poruka += "- Godina objavljivanja mora biti broj\n";
 			ok = false;
 		}
-		if(txtId.getText().trim().equals("")) {
-			poruka += "- Unesite id\n";
-			ok = false;
-		}
+		
 			
 		if(txtNaslov.getText().trim().equals("")) {
 			poruka += "- Unesite naslov\n";

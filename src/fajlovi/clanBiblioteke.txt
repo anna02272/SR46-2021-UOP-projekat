@@ -1,4 +1,1 @@
-br|22|2|true|0|karta|234565432|aa|MUSKI|false|TipClanarine[id=idjsj|naziv=22|cena=123.0|obrisan=false]
-br|22|2|true|0|karta|234565432|aa|MUSKI|false|null
-br|22|2|true|0|karta|234565432|aa|MUSKI|false|null
-br|22|2|true|0|karta|234565432|aa|MUSKI|false|null
+1|2021-02-02|2|true|1|Clan clan|123456543223|Adresa|MUSKI|false|3

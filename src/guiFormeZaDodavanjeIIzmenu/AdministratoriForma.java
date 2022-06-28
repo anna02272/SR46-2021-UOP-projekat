@@ -203,7 +203,14 @@ public class AdministratoriForma extends JFrame{
 		if(txtJMBG.getText().trim().equals("")) {
 			poruka += "- Unesite JMBG\n";
 			ok = false;
-		} 
+		} else if(administrator == null){
+		String JMBG = txtJMBG.getText().trim();
+		Administrator pronadjeni = biblioteka.nadjiAdministratora(JMBG);
+		if(pronadjeni != null) {
+			poruka += "- JMBG mora biti jedinstven\n";
+			ok = false;
+		}
+	}
 		if(txtAdresa.getText().trim().equals("")) {
 			poruka += "- Unesite adresu\n";
 			ok = false;

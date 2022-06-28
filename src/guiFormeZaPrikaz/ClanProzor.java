@@ -20,8 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import main.BibliotekaMain;
 import biblioteka.Biblioteka;
 import biblioteka.ClanBiblioteke;
-import enumeracije.EnumPol;
 import guiFormeZaDodavanjeIIzmenu.ClanForma;
+
 public class ClanProzor extends JFrame{
 
 	String putanjaAdd, putanjaDelete, putanjaRead, putanjaUpdate;
@@ -85,7 +85,7 @@ public class ClanProzor extends JFrame{
 			sadrzaj[i][5] = clanBiblioteke.getJMBG();
 			sadrzaj[i][6] = clanBiblioteke.getAdresa();
 			sadrzaj[i][7] = clanBiblioteke.getPol();
-			sadrzaj[i][8] = clanBiblioteke.getTipclanarine();
+			sadrzaj[i][8] = clanBiblioteke.getTipClanarine().getNaziv();
 		}
 		
 		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);

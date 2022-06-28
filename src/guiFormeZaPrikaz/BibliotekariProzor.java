@@ -116,7 +116,7 @@ import biblioteka.Biblioteka;
 							bibliotekar.setObrisan(true);
 							tableModel.removeRow(red);
 							
-							biblioteka.upisiBibliotekara("fajlovi/bibliotekari.txt");
+							biblioteka.upisiBibliotekara("fajlovi/bibliotekar.txt");
 						}
 					}
 				}

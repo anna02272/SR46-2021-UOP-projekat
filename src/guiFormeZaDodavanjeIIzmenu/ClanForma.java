@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -14,10 +15,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import main.BibliotekaMain;
+
 import net.miginfocom.swing.MigLayout;
 import biblioteka.Biblioteka;
 import biblioteka.ClanBiblioteke;
@@ -28,11 +28,14 @@ public class ClanForma extends JFrame{
 	private JLabel lblBrojClanskeKarte = new JLabel("Broj Clanske Karte");
 	private JTextField txtBrojClanskeKarte = new JTextField(20);
 	
-	private JLabel lblDatumPoslednjeUplate= new JLabel("Datum Poslednje Uplate");
-	private JTextField txtDatumPoslednjeUplate = new JTextField(20);	
+    private JLabel lblDatumPoslednjeUplate= new JLabel("Datum Poslednje Uplate");
+    private JTextField txtDatumPoslednjeUplate = new JTextField(20);	
 	
 	private JLabel lblBrojMeseciClanarine = new JLabel("Broj Meseci Clanarine");
 	private JTextField txtBrojMeseciClanarine = new JTextField(20);
+	
+	private JLabel lblAktivan = new JLabel("Aktivan");
+	private JCheckBox txtAktivan = new JCheckBox("Aktivan");
 	
 	private JLabel lblId = new JLabel("Id");
 	private JTextField txtId = new JTextField(20);
@@ -45,9 +48,7 @@ public class ClanForma extends JFrame{
 	
 	private JLabel lblAdresa = new JLabel("Adresa");
 	private JTextField txtAdresa = new JTextField(20);
-	
-	private JLabel lblTipClanarine= new JLabel("Tip clanarine ");
-	private JComboBox cbTip=new JComboBox();
+
 	
 	private JLabel lblEnumPol = new JLabel("Pol");
 	private JComboBox<EnumPol> Pol = new JComboBox<EnumPol>(EnumPol.values());
@@ -55,11 +56,12 @@ public class ClanForma extends JFrame{
 	private JLabel lblObrisan = new JLabel("Obrisan");
 	private JCheckBox txtObrisan = new JCheckBox("Obrisan");
 	
-	private JLabel lblAktivan = new JLabel("Aktivan");
-	private JCheckBox txtAktivan = new JCheckBox("Aktivan");
+	private JLabel lblTipClanarine= new JLabel("Tip clanarine ");
+	private JComboBox cbTip=new JComboBox();
 	
 	private JButton btnOk = new JButton("OK");
 	private JButton btnCanel = new JButton("Cancel");
+	
 	
 	
 	
@@ -85,8 +87,8 @@ public class ClanForma extends JFrame{
 	
 	private void initGUI() {
 		ArrayList<TipClanarine> tipoviClanarine = biblioteka.sviNeobrisaniClanarina();
-		for (TipClanarine tipClanarine: tipoviClanarine ) {
-			cbTip.addItem(tipClanarine.getId());
+		for (TipClanarine tipClanarine: tipoviClanarine) {
+			cbTip.addItem(tipClanarine.getNaziv());
 		}
 		MigLayout layout = new MigLayout("wrap 2", "[][]", "[][][][][]20[]");
 		setLayout(layout);
@@ -99,11 +101,15 @@ public class ClanForma extends JFrame{
 		add(lblBrojClanskeKarte);
 		add(txtBrojClanskeKarte);
 		
+		
 		add(lblDatumPoslednjeUplate);
 		add(txtDatumPoslednjeUplate );
 		
 		add(lblBrojMeseciClanarine);
 		add(txtBrojMeseciClanarine);
+		
+		add(lblAktivan);
+		add(txtAktivan);
 		
 		add(lblId);
 		add(txtId);
@@ -117,22 +123,22 @@ public class ClanForma extends JFrame{
 		add(lblAdresa);
 		add(txtAdresa);
 		
-		add(lblTipClanarine);
-		add(cbTip);
-		
 		add(lblEnumPol);
 		add(Pol);
 		
 		add(lblObrisan);
 		add(txtObrisan);
 		
-		add(lblAktivan);
-		add(txtAktivan);
+		add(lblTipClanarine);
+		add(cbTip);
 		
 		add(new JLabel());
 		add(btnOk, "split 2");
 		add(btnCanel);
 	}
+	
+
+	
 	
 	private void initActions() {
 		btnOk.addActionListener(new ActionListener() {
@@ -141,32 +147,32 @@ public class ClanForma extends JFrame{
 				if(validacija()) {
 					int tipId = cbTip.getSelectedIndex();
 					String brojClanskeKarte = txtBrojClanskeKarte.getText().trim();
-					String datumPoslednjeUplate= txtDatumPoslednjeUplate.getText().trim();
+					LocalDate datumPoslednjeUplate= LocalDate.parse(txtDatumPoslednjeUplate.getText().trim());
 					Integer brojMeseciClanarine = Integer.parseInt(txtBrojMeseciClanarine.getText().trim());
+					Boolean aktivan = txtAktivan.isSelected();
 					String id = txtId.getText().trim();
 					String imeIPrezime = txtImeIPrezime.getText().trim();
 					String JMBG = txtJMBG.getText().trim();
 					String adresa = txtAdresa.getText().trim();
 					EnumPol pol = (EnumPol)Pol.getSelectedItem();
-					TipClanarine tipClanarine = biblioteka.sviNeobrisaniClanarina().get(tipId);
 					Boolean obrisan = txtObrisan.isSelected();
-					Boolean aktivan = txtAktivan.isSelected();
+					TipClanarine tipClanarine = biblioteka.sviNeobrisaniClanarina().get(tipId);
 					
 					if(clanBiblioteke == null) { // DODAVANJE:
 						ClanBiblioteke novi = new ClanBiblioteke(brojClanskeKarte, datumPoslednjeUplate, brojMeseciClanarine,true, id, imeIPrezime, JMBG, adresa, pol,false ,tipClanarine);
-						biblioteka.getClanoviBiblioteke().add(novi);
+						biblioteka.dodajClana(novi);
 					}else { // IZMENA:
 						clanBiblioteke.setBrojClanskeKarte(brojClanskeKarte);
 						clanBiblioteke.setDatumPoslednjeUplate(datumPoslednjeUplate);
 						clanBiblioteke.setBrojMeseciClanarine(brojMeseciClanarine);
+						clanBiblioteke.setAktivan(aktivan);
 						clanBiblioteke.setId(id);
 						clanBiblioteke.setImeIPrezime(imeIPrezime);
 						clanBiblioteke.setJMBG(JMBG);
 						clanBiblioteke.setAdresa(adresa);
-						clanBiblioteke.setTipclanarine(tipClanarine);;
 						clanBiblioteke.setPol(pol);
 						clanBiblioteke.setObrisan(obrisan);
-						clanBiblioteke.setAktivan(aktivan);
+						clanBiblioteke.setTipclanarine(tipClanarine);
 					}
 					biblioteka.upisiClanBiblioteke("fajlovi/clanBiblioteke.txt");
 					ClanForma.this.dispose();
@@ -181,17 +187,18 @@ public class ClanForma extends JFrame{
 	private void popuniPolja() {
 		
 		txtBrojClanskeKarte.setText(clanBiblioteke.getBrojClanskeKarte());
-		txtDatumPoslednjeUplate.setText(String.valueOf(clanBiblioteke.getDatumPoslednjeUplate()));
+		txtDatumPoslednjeUplate.setText(clanBiblioteke.getDatumPoslednjeUplate().toString());
 		txtBrojMeseciClanarine.setText(String.valueOf(clanBiblioteke.getBrojMeseciClanarine()));
+		txtAktivan.setSelected(clanBiblioteke.isAktivan());
 		txtId.setText(clanBiblioteke.getId());
 		txtImeIPrezime.setText(clanBiblioteke.getImeIPrezime());
 		txtJMBG.setText(clanBiblioteke.getJMBG());
 		txtAdresa.setText(clanBiblioteke.getAdresa());
 		Pol.setSelectedItem(clanBiblioteke.getPol());
-		cbTip.setSelectedItem(clanBiblioteke.getTipclanarine());
 		txtObrisan.setSelected(clanBiblioteke.isObrisan());
-		txtAktivan.setSelected(clanBiblioteke.isAktivan());
+		cbTip.setSelectedItem(clanBiblioteke.getTipClanarine());
 	}
+	
 	
 	private boolean validacija() {
 		boolean ok = true;
@@ -235,7 +242,14 @@ public class ClanForma extends JFrame{
 		if(txtJMBG.getText().trim().equals("")) {
 			poruka += "- Unesite JMBG\n";
 			ok = false;
-		} 
+		}else if(clanBiblioteke == null){
+		String JMBG = txtJMBG.getText().trim();
+		ClanBiblioteke pronadjeni = biblioteka.nadjiClanove(JMBG);
+		if(pronadjeni != null) {
+			poruka += "- JMBG mora biti jedinstven\n";
+			ok = false;
+		}
+		}
 		if(txtAdresa.getText().trim().equals("")) {
 			poruka += "- Unesite adresu\n";
 			ok = false;
@@ -251,5 +265,6 @@ public class ClanForma extends JFrame{
 		
 		return ok;
 	}
+	
 }
 

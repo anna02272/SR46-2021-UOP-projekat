@@ -1,3 +1,2 @@
 bibliotekar1|bibl123|25000.0|1|Bibliotekar 1|2345676543|Bbb 1|MUSKI|false
 test|test|1.0|2|test|test|test|MUSKI|true
-bibliotekar2|bibl2123|2354322.0|3|Bibliotekar 2|234564325|BBb 2|ZENSKI|false

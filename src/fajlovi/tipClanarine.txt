@@ -1,3 +1,4 @@
-idjsj|22|123.0|true
-idjsj|22|2.0|false
-1|clanarina|1000.0|false
+1|penzioner|100.0|false
+2|deca do 14 godina|150.0|false
+test|testt|1.0|true
+3|ostali clanovi|250.0|false

@@ -15,11 +15,14 @@ public class Bibliotekar extends Zaposleni {
 
 	@Override
 	public String toString() {
-		return "Bibliotekar \nkorisnickoIme=" + korisnickoIme + "\nkorisnickaLozinka=" + korisnickaLozinka +
-				"\nplata="
-				+ plata + "\nid=" + id + "\nimeIPrezime=" + imeIPrezime + "\nJMBG=" + JMBG + "\nadresa=" + adresa
-				+ "\npol=" + pol + "\nobrisan=" + obrisan ;
+		return "Bibliotekar [korisnickoIme=" + korisnickoIme +
+				"|korisnickaLozinka=" + korisnickaLozinka +
+				"|plata="
+				+ plata + "|id=" + id + "|imeIPrezime=" + imeIPrezime +
+				"|JMBG=" + JMBG + "|adresa=" + adresa
+				+ "|pol=" + pol + "|obrisan=" + obrisan + "]";
 	}
+
 
 
 

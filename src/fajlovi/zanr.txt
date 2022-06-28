@@ -1,2 +1,4 @@
-1|1|zanr|false
-2|2|romantika|false
+1|Romantika|ljubavno|false
+2|test|test|true
+3|Komedija|smesno|false
+4|Krimi|kriminalistika|false

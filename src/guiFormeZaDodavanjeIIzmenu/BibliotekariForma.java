@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import main.BibliotekaMain;
 import net.miginfocom.swing.MigLayout;
+import biblioteka.Administrator;
 import biblioteka.Biblioteka;
 import biblioteka.Bibliotekar;
 import enumeracije.EnumPol;
@@ -201,7 +202,14 @@ public class BibliotekariForma extends JFrame{
 		if(txtJMBG.getText().trim().equals("")) {
 			poruka += "- Unesite JMBG\n";
 			ok = false;
-		} 
+		} else if(bibliotekar == null){
+			String JMBG = txtJMBG.getText().trim();
+			Bibliotekar pronadjeni = biblioteka.nadjiBibliotekara(JMBG);
+			if(pronadjeni != null) {
+				poruka += "- JMBG mora biti jedinstven\n";
+				ok = false;
+			}
+		}
 		if(txtAdresa.getText().trim().equals("")) {
 			poruka += "- Unesite adresu\n";
 			ok = false;

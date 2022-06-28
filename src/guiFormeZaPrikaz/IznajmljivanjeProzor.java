@@ -77,11 +77,11 @@ public class IznajmljivanjeProzor extends JFrame{
 			IznajmljivanjeKnjige iznajmljivanjeKnjige = biblioteka.sviNeobrisaniIznajmljivanje().get(i);
 			sadrzaj[i][0] = iznajmljivanjeKnjige.getDatumIznajmljivanja();
 			sadrzaj[i][1] = iznajmljivanjeKnjige.getDatumVracanja();
-			sadrzaj[i][2] = iznajmljivanjeKnjige.getPrimerak();
-			sadrzaj[i][3] = iznajmljivanjeKnjige.getClan();
-			sadrzaj[i][4] = iznajmljivanjeKnjige.getAdministrator();
-			sadrzaj[i][5] = iznajmljivanjeKnjige.getBibliotekar();
-		
+			sadrzaj[i][2] = iznajmljivanjeKnjige.getPrimerak().getKnjiga().getNaslovKnjige();
+			sadrzaj[i][3] = iznajmljivanjeKnjige.getClan().getImeIPrezime();
+			sadrzaj[i][4] = iznajmljivanjeKnjige.getAdministrator().getImeIPrezime();
+			sadrzaj[i][5] = iznajmljivanjeKnjige.getBibliotekar().getImeIPrezime();
+
 		}
 		
 		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);

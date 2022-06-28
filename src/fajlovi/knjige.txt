@@ -1,1 +1,4 @@
-22|Naslov|Orginalni|Pera|1970|Nananana|ENGLESKI|false|1
+1|Naslov 1|OrgNaslov 1|Pisac|2019|opis|ENGLESKI|false|3
+2|Naslov 2|OrgNaslov 2|Pisac 2|1970|opis 2|ENGLESKI|false|1
+test|test|test|test|45678|test|ENGLESKI|true|1
+100|1|1|1|1|1|ENGLESKI|true|1

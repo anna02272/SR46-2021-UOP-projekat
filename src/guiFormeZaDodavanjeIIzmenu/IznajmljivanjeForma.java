@@ -3,9 +3,12 @@ package guiFormeZaDodavanjeIIzmenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -79,23 +82,23 @@ public class IznajmljivanjeForma extends JFrame{
 	
 	private void initGUI() {
 		ArrayList<PrimerakKnjige> primerci = biblioteka.sviNeobrisaniPrimerak();
-		for (PrimerakKnjige primerakKnjige: primerci) {
-			cbPrimerak.addItem(primerakKnjige.getId());
+		for (PrimerakKnjige primerak: primerci) {
+			cbPrimerak.addItem(primerak.getKnjiga().getNaslovKnjige());
 		}
 		
 		ArrayList<ClanBiblioteke> clanovi = biblioteka.sviNeobrisaniClanovi();
 		for (ClanBiblioteke clanBiblioteke: clanovi) {
-			cbClan.addItem(clanBiblioteke.getId());
+			cbClan.addItem(clanBiblioteke.getImeIPrezime());
 		}
 		
 		ArrayList<Administrator> admini = biblioteka.sviNeobrisaniAdministratori();
 		for (Administrator administrator: admini) {
-			cbAdmin.addItem(administrator.getId());
+			cbAdmin.addItem(administrator.getImeIPrezime());
 		}
 		
 		ArrayList<Bibliotekar> bibliotekari = biblioteka.sviNeobrisaniBibliotekari();
 		for (Bibliotekar bibliotekar : bibliotekari) {
-			cbBibl.addItem(bibliotekar.getId());
+			cbBibl.addItem(bibliotekar.getImeIPrezime());
 		}
 
 		
@@ -149,27 +152,25 @@ public class IznajmljivanjeForma extends JFrame{
 					int clanId = cbClan.getSelectedIndex();
 					int adminId = cbAdmin.getSelectedIndex();
 					int biblId = cbBibl.getSelectedIndex();
-					String datumIznajmljivanja = txtIznaj.getText().trim();
-					String datumVracanja = txtVrac.getText().trim();
+					LocalDate datumIznajmljivanja = LocalDate.parse(txtIznaj.getText().trim());
+					LocalDate datumVracanja = LocalDate.parse(txtVrac.getText().trim());
 					Boolean obrisan = txtObrisan.isSelected();
-					PrimerakKnjige primerakKnjige = biblioteka.sviNeobrisaniPrimerak().get(primerakId);
+					PrimerakKnjige primerak= biblioteka.sviNeobrisaniPrimerak().get(primerakId);
 					ClanBiblioteke clanBiblioteke = biblioteka.sviNeobrisaniClanovi().get(clanId);
 					Administrator administrator = biblioteka.sviNeobrisaniAdministratori().get(adminId);
 					Bibliotekar bibliotekar = biblioteka.sviNeobrisaniBibliotekari().get(biblId);
-					
-					
+					 
 					if(iznajmljivanjeKnjige == null) { // DODAVANJE:
-						IznajmljivanjeKnjige novi = new IznajmljivanjeKnjige(datumIznajmljivanja, datumVracanja,false, primerakKnjige,clanBiblioteke,administrator, bibliotekar );
-						biblioteka.getIznajmljivanjeKnjige().add(novi);
+						IznajmljivanjeKnjige novi = new IznajmljivanjeKnjige(datumIznajmljivanja, datumVracanja,false, primerak,clanBiblioteke,administrator, bibliotekar );
+						biblioteka.dodajIznajmljivanje(novi);
 					}else { // IZMENA:
 						iznajmljivanjeKnjige.setDatumIznajmljivanja(datumIznajmljivanja);
 						iznajmljivanjeKnjige.setDatumVracanja(datumVracanja);
 						iznajmljivanjeKnjige.setObrisan(obrisan);
-						iznajmljivanjeKnjige.setPrimerak(primerakKnjige);
+						iznajmljivanjeKnjige.setPrimerak(primerak);
 						iznajmljivanjeKnjige.setClan(clanBiblioteke);
 						iznajmljivanjeKnjige.setAdministrator(administrator);
 						iznajmljivanjeKnjige.setBibliotekar(bibliotekar);
-						
 					}
 					
 					biblioteka.upisiIznajmljivanjeKnjige("fajlovi/iznajmljivanjeknjige.txt");
@@ -183,8 +184,8 @@ public class IznajmljivanjeForma extends JFrame{
 	}
 	
 	private void popuniPolja() {
-		txtIznaj.setText(iznajmljivanjeKnjige.getDatumIznajmljivanja());
-		txtVrac.setText(iznajmljivanjeKnjige.getDatumVracanja());
+		txtIznaj.setText(iznajmljivanjeKnjige.getDatumIznajmljivanja().toString());
+		txtVrac.setText(iznajmljivanjeKnjige.getDatumVracanja().toString());
 		txtObrisan.setSelected(iznajmljivanjeKnjige.isObrisan());
 		cbPrimerak.setSelectedItem(iznajmljivanjeKnjige.getPrimerak());
 		cbClan.setSelectedItem(iznajmljivanjeKnjige.getClan());
@@ -202,10 +203,21 @@ public class IznajmljivanjeForma extends JFrame{
 			poruka += "- Unesite datum iznajmljivanja\n";
 			ok = false;
 		}
-		if(txtVrac.getText().trim().equals("")) {
-			poruka += "- Unesite datum vracanja\n";
-			ok = false;		}
 		
+		if (txtVrac.getText().trim().equals("")) {
+			poruka += "- Unesite datum vracanja\n";
+			ok = false;		
+			}
+	
+		LocalDate datumIznajmljivanja = LocalDate.parse(txtIznaj.getText().trim());
+		LocalDate datumVracanja = LocalDate.parse(txtVrac.getText().trim());
+		
+		if(datumIznajmljivanja.isAfter(datumVracanja)) {
+			poruka += "- Datumi se ne poklapaju\n";
+			ok = false;
+			
+			
+		}
 		if(ok == false) {
 			JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
 		}

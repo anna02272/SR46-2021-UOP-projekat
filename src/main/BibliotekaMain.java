@@ -21,7 +21,6 @@ import enumeracije.EnumJezik;
 
 public class BibliotekaMain {
 		public static final String KNJIGE_FAJL = "fajlovi/knjige.txt";
-		public static final String ZAPOSLENI_FAJL = "fajlovi/zaposleni.txt";
 		public static final String ADMINISTRATOR_FAJL = "fajlovi/administratori.txt";
 		public static final String BIBLIOTEKAR_FAJL = "fajlovi/bibliotekar.txt";
 		public static final String CLANBIBLIOTEKE_FAJL = "fajlovi/clanBiblioteke.txt";
@@ -37,18 +36,30 @@ public class BibliotekaMain {
 		Biblioteka bibliotekaNova = new Biblioteka();
 		bibliotekaNova.ucitajAdministratora(ADMINISTRATOR_FAJL);
 		bibliotekaNova.ucitajBibliotekara(BIBLIOTEKAR_FAJL);
-		bibliotekaNova.ucitajBiblioteka(BIBLIOTEKA_FAJL);
-		bibliotekaNova.ucitajClanBiblioteke(CLANBIBLIOTEKE_FAJL);
-		bibliotekaNova.ucitajIznajmljivanjeKnjige(IZNAJMLJIVANJEKNJIGE_FAJL);
 		bibliotekaNova.ucitajZanrKnjige(ZANR_FAJL);
 		bibliotekaNova.ucitajKnjige(KNJIGE_FAJL);
 		bibliotekaNova.ucitajPrimerakKnjige(PRIMERAKKNJIGE_FAJL);
-		bibliotekaNova.ucitajTipClanarine(PRIMERAKKNJIGE_FAJL);
+		bibliotekaNova.ucitajTipClanarine(TIPCLANARINE_FAJL);
 		bibliotekaNova.ucitajClanBiblioteke(CLANBIBLIOTEKE_FAJL);
+		bibliotekaNova.ucitajIznajmljivanjeKnjige(IZNAJMLJIVANJEKNJIGE_FAJL);
+		bibliotekaNova.ucitajBiblioteka(BIBLIOTEKA_FAJL);
+	
+		
+		
 
 		Login lp = new Login(bibliotekaNova);
 		lp.setVisible(true);
 		
+		ispisiSvePodatke(bibliotekaNova); 
+	}
+		
+		public static void ispisiSvePodatke(Biblioteka biblioteka) {
+//			for(PrimerakKnjige primerakKnjige : biblioteka.getPrimerakKnjiga()) {
+//				System.out.println(primerakKnjige + "\n");
+//			}
+//			for(IznajmljivanjeKnjige iznajmljivanjeKnjige: biblioteka.getIznajmljivanjeKnjige()) {
+//				System.out.println(iznajmljivanjeKnjige + "\n");
+//			}
 		
 //		System.out.println("PODACI IZ DATOTEKA:");
 //	

@@ -20,7 +20,7 @@ public class ClanarinaForma extends JFrame{
 	private JLabel lblId = new JLabel("Id");
 	private JTextField txtId = new JTextField(20);
 	
-	private JLabel lblNaziv = new JLabel("Naziv");
+	private JLabel lblNaziv= new JLabel("Naziv");
 	private JTextField txtNaziv = new JTextField(20);
 	
 	private JLabel lblCena = new JLabel("Cena");
@@ -39,7 +39,7 @@ public class ClanarinaForma extends JFrame{
 		this.biblioteka = biblioteka;
 		this.tipClanarine = tipClanarine;
 		if(tipClanarine == null) {
-			setTitle("Dodavanje tipa clanarine");
+			setTitle("Dodavanje clanarine");
 		}else {
 			setTitle("Izmena podataka - " + tipClanarine.getId());
 		}
@@ -91,7 +91,7 @@ public class ClanarinaForma extends JFrame{
 					Boolean obrisan = txtObrisan.isSelected();
 					
 					if(tipClanarine == null) { // DODAVANJE:
-						TipClanarine novi = new TipClanarine(id, naziv, cena,  false);
+						TipClanarine novi = new TipClanarine(id,naziv, cena, false);
 						biblioteka.dodajClanarinu(novi); 
 					}else { // IZMENA:
 						tipClanarine.setId(id);
@@ -120,7 +120,7 @@ public class ClanarinaForma extends JFrame{
 	private boolean validacija() {
 		boolean ok = true;
 		String poruka = "Molimo popravite sledece greske u unosu:\n";
-			
+		
 		if(txtId.getText().trim().equals("")) {
 			poruka += "- Unesite Id\n";
 			ok = false;
@@ -128,11 +128,15 @@ public class ClanarinaForma extends JFrame{
 			String Id = txtId.getText().trim();
 			TipClanarine pronadjeni = biblioteka.nadjiClanarinu(Id);
 			if(pronadjeni != null) {
-				poruka += "- Clanarina sa tim id vec postoji\n";
+				poruka += "- Tip clanarine sa tim id-om vec postoji\n";
 				ok = false;
 			}
 		}
 			
+		if(txtNaziv.getText().trim().equals("")) {
+			poruka += "- Unesite oznaku\n";
+			ok = false;
+		} 
 		try {
 			Double.parseDouble(txtCena.getText().trim());
 		}catch (NumberFormatException e) {
@@ -140,10 +144,6 @@ public class ClanarinaForma extends JFrame{
 			ok = false;
 		}
 		
-		if(txtNaziv.getText().trim().equals("")) {
-			poruka += "- Unesite naziv\n";
-			ok = false;
-		}
 		
 		if(ok == false) {
 			JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);

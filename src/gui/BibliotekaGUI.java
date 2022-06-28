@@ -54,28 +54,31 @@ public class BibliotekaGUI extends JFrame {
 	
 	private Biblioteka biblioteka;
 	private Zaposleni prijavljeniKorisnik;
+	private boolean isAdministrator;
 	
 	public BibliotekaGUI(Biblioteka biblioteka, Zaposleni prijavljeniKorisnik,boolean isAdministrator) {
 		this.biblioteka = biblioteka;
 		this.prijavljeniKorisnik = prijavljeniKorisnik;
+		this.isAdministrator = isAdministrator;
 		setTitle("Biblioteka: " + prijavljeniKorisnik.getKorisnickoIme());
 		setSize(700, 500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		initMenu();
+		initMenu(isAdministrator);
 		initActions();
 	}
 	
-	private void initMenu() {
+	private void initMenu(boolean isAdministrator) {
 		setJMenuBar(mainMenu);
 		mainMenu.add(clanoviMenu);
 		clanoviMenu.add(clanoviItem);
 		
+		if(isAdministrator) {
 		mainMenu.add(zaposleniMenu);
 		zaposleniMenu.add(administratorItem);
 		zaposleniMenu.add(bibliotekarItem);
-		
+		}
 		mainMenu.add(knjigeMenu);
 		knjigeMenu.add(knjigeItem);
 		knjigeMenu.add(primerciItem);
@@ -91,7 +94,6 @@ public class BibliotekaGUI extends JFrame {
 		
 		mainMenu.add(bibliotekaMenu);
 		bibliotekaMenu.add(bibliotekaItem);
-		//if(isAdministrator) {}
 		
 
 	}

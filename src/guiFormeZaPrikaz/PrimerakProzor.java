@@ -77,7 +77,7 @@ public class PrimerakProzor extends JFrame{
 		for(int i=0; i<biblioteka.sviNeobrisaniPrimerak().size(); i++) {
 			PrimerakKnjige primerakKnjige = biblioteka.sviNeobrisaniPrimerak().get(i);
 			sadrzaj[i][0] = primerakKnjige.getId();
-			sadrzaj[i][1] = primerakKnjige.getNazivKnjige();
+			sadrzaj[i][1] = primerakKnjige.getKnjiga().getNaslovKnjige();
 			sadrzaj[i][2] = primerakKnjige.getBrojStrana();
 			sadrzaj[i][3] = primerakKnjige.getTipPoveza();
 			sadrzaj[i][4] = primerakKnjige.getJezik();

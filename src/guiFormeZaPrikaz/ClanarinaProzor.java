@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import biblioteka.Biblioteka;
 import biblioteka.TipClanarine;
 import guiFormeZaDodavanjeIIzmenu.ClanarinaForma;
+
 public class ClanarinaProzor extends JFrame{
 
 	String putanjaAdd, putanjaDelete, putanjaRead, putanjaUpdate;
@@ -38,7 +38,7 @@ public class ClanarinaProzor extends JFrame{
 	
 	public ClanarinaProzor(Biblioteka biblioteka) {
 		this.biblioteka = biblioteka;
-		setTitle("Tip clanarine");
+		setTitle("Clanarina");
 		setSize(700, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -70,7 +70,7 @@ public class ClanarinaProzor extends JFrame{
 		mainToolbar.add(btnDelete);
 		add(mainToolbar, BorderLayout.NORTH);
 		
-		String[] zaglavlja = new String[] {"Id", "Naziv","Cena"};
+		String[] zaglavlja = new String[] {"Id", "Naziv", "Cena"};
 		Object[][] sadrzaj = new Object[biblioteka.sviNeobrisaniClanarina().size()][zaglavlja.length];
 		
 		for(int i=0; i<biblioteka.sviNeobrisaniClanarina().size(); i++) {
@@ -93,56 +93,58 @@ public class ClanarinaProzor extends JFrame{
 		JScrollPane scrollPane = new JScrollPane(clanarinaTabela);
 		add(scrollPane, BorderLayout.CENTER);
 	}
-		
-		private void initActions() {
-			btnDelete.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					int red = clanarinaTabela.getSelectedRow();
-					if(red == -1) {
-						JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
-					}else {
-						String Id = tableModel.getValueAt(red, 0).toString();
-						TipClanarine tipClanarine = biblioteka.nadjiClanarinu(Id);
+	
+	private void initActions() {
+		btnDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = clanarinaTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}else {
+					String id = tableModel.getValueAt(red, 0).toString();
+					TipClanarine tipClanarine = biblioteka.nadjiClanarinu(id);
+					
+					int izbor = JOptionPane.showConfirmDialog(null, 
+							"Da li ste sigurni da zelite da obrisete clanarinu?", 
+							id + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
+					if(izbor == JOptionPane.YES_OPTION) {
+						tipClanarine.setObrisan(true);
+						tableModel.removeRow(red);
 						
-						int izbor = JOptionPane.showConfirmDialog(null, 
-								"Da li ste sigurni da zelite da obrisete clanarinu?", 
-								Id + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
-						if(izbor == JOptionPane.YES_OPTION) {
-							tipClanarine.setObrisan(true);
-							tableModel.removeRow(red);
-							
-							biblioteka.upisiTipClanarine("fajlovi/tipClanarine.txt");
-							
-						}
+						biblioteka.upisiTipClanarine("fajlovi/tipClanarine.txt");
 					}
 				}
-			});
+			}
+		});
+		
+		btnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ClanarinaForma pf = new ClanarinaForma(biblioteka, null);
+				pf.setVisible(true);
+			}
+		});
+		
+		btnEdit.addActionListener(new ActionListener() {
 			
-			btnAdd.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					ClanarinaForma pf = new ClanarinaForma(biblioteka, null);
-					pf.setVisible(true);
-				}
-			});
-			
-			btnEdit.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					int red = clanarinaTabela.getSelectedRow();
-					if(red == -1) {
-						JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = clanarinaTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}else {
+					String Id = tableModel.getValueAt(red, 0).toString();
+					TipClanarine tipClanarine = biblioteka.nadjiClanarinu(Id);
+					if(tipClanarine == null) {
+						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja clanarine sa tim id", "Greska", JOptionPane.WARNING_MESSAGE);
 					}else {
-						String Id = tableModel.getValueAt(red, 0).toString();
-						TipClanarine tipClanarine = biblioteka.nadjiClanarinu(Id);
-//						
-							ClanarinaForma pf = new ClanarinaForma(biblioteka, tipClanarine);
-							pf.setVisible(true);
-						}
+						ClanarinaForma pf = new ClanarinaForma(biblioteka, tipClanarine);
+						pf.setVisible(true);
 					}
-//				}
-			});
-		}
+				}
+			}
+		});
 	}
+}
+
