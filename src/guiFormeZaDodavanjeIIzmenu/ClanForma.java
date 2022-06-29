@@ -33,9 +33,7 @@ public class ClanForma extends JFrame{
 	
 	private JLabel lblBrojMeseciClanarine = new JLabel("Broj Meseci Clanarine");
 	private JTextField txtBrojMeseciClanarine = new JTextField(20);
-	
-	private JLabel lblAktivan = new JLabel("Aktivan");
-	private JCheckBox txtAktivan = new JCheckBox("Aktivan");
+
 	
 	private JLabel lblId = new JLabel("Id");
 	private JTextField txtId = new JTextField(20);
@@ -90,6 +88,7 @@ public class ClanForma extends JFrame{
 		for (TipClanarine tipClanarine: tipoviClanarine) {
 			cbTip.addItem(tipClanarine.getNaziv());
 		}
+	
 		MigLayout layout = new MigLayout("wrap 2", "[][]", "[][][][][]20[]");
 		setLayout(layout);
 		
@@ -107,10 +106,7 @@ public class ClanForma extends JFrame{
 		
 		add(lblBrojMeseciClanarine);
 		add(txtBrojMeseciClanarine);
-		
-		add(lblAktivan);
-		add(txtAktivan);
-		
+	
 		add(lblId);
 		add(txtId);
 		
@@ -141,6 +137,14 @@ public class ClanForma extends JFrame{
 	
 	
 	private void initActions() {
+		btnCanel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ClanForma.this.dispose();
+				ClanForma.this.setVisible(false);
+			}
+		});
+		
 		btnOk.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -149,7 +153,6 @@ public class ClanForma extends JFrame{
 					String brojClanskeKarte = txtBrojClanskeKarte.getText().trim();
 					LocalDate datumPoslednjeUplate= LocalDate.parse(txtDatumPoslednjeUplate.getText().trim());
 					Integer brojMeseciClanarine = Integer.parseInt(txtBrojMeseciClanarine.getText().trim());
-					Boolean aktivan = txtAktivan.isSelected();
 					String id = txtId.getText().trim();
 					String imeIPrezime = txtImeIPrezime.getText().trim();
 					String JMBG = txtJMBG.getText().trim();
@@ -158,6 +161,17 @@ public class ClanForma extends JFrame{
 					Boolean obrisan = txtObrisan.isSelected();
 					TipClanarine tipClanarine = biblioteka.sviNeobrisaniClanarina().get(tipId);
 					
+					
+					double cena = biblioteka.sviNeobrisaniClanarina().get(tipId).getCena();{
+					
+					if(Integer.parseInt(txtBrojMeseciClanarine.getText().trim())>=6 && Integer.parseInt(txtBrojMeseciClanarine.getText().trim())<12) {
+						cena = (Integer.parseInt(txtBrojMeseciClanarine.getText().trim()) * cena) - (Integer.parseInt(txtBrojMeseciClanarine.getText().trim()) * cena * 0.1);
+					}else if (Integer.parseInt(txtBrojMeseciClanarine.getText().trim())>=12) {	
+						cena = (Integer.parseInt(txtBrojMeseciClanarine.getText().trim()) * cena) - (Integer.parseInt(txtBrojMeseciClanarine.getText().trim()) * cena * 0.2);
+					}else {
+						cena = Integer.parseInt(txtBrojMeseciClanarine.getText().trim()) * cena;
+					}
+					
 					if(clanBiblioteke == null) { // DODAVANJE:
 						ClanBiblioteke novi = new ClanBiblioteke(brojClanskeKarte, datumPoslednjeUplate, brojMeseciClanarine,true, id, imeIPrezime, JMBG, adresa, pol,false ,tipClanarine);
 						biblioteka.dodajClana(novi);
@@ -165,7 +179,6 @@ public class ClanForma extends JFrame{
 						clanBiblioteke.setBrojClanskeKarte(brojClanskeKarte);
 						clanBiblioteke.setDatumPoslednjeUplate(datumPoslednjeUplate);
 						clanBiblioteke.setBrojMeseciClanarine(brojMeseciClanarine);
-						clanBiblioteke.setAktivan(aktivan);
 						clanBiblioteke.setId(id);
 						clanBiblioteke.setImeIPrezime(imeIPrezime);
 						clanBiblioteke.setJMBG(JMBG);
@@ -173,7 +186,11 @@ public class ClanForma extends JFrame{
 						clanBiblioteke.setPol(pol);
 						clanBiblioteke.setObrisan(obrisan);
 						clanBiblioteke.setTipclanarine(tipClanarine);
+						
+						
 					}
+					
+					JOptionPane.showMessageDialog(rootPane, "Cena sa popustom je: " + cena);}
 					biblioteka.upisiClanBiblioteke("fajlovi/clanBiblioteke.txt");
 					ClanForma.this.dispose();
 					ClanForma.this.setVisible(false);
@@ -189,7 +206,6 @@ public class ClanForma extends JFrame{
 		txtBrojClanskeKarte.setText(clanBiblioteke.getBrojClanskeKarte());
 		txtDatumPoslednjeUplate.setText(clanBiblioteke.getDatumPoslednjeUplate().toString());
 		txtBrojMeseciClanarine.setText(String.valueOf(clanBiblioteke.getBrojMeseciClanarine()));
-		txtAktivan.setSelected(clanBiblioteke.isAktivan());
 		txtId.setText(clanBiblioteke.getId());
 		txtImeIPrezime.setText(clanBiblioteke.getImeIPrezime());
 		txtJMBG.setText(clanBiblioteke.getJMBG());
@@ -198,6 +214,7 @@ public class ClanForma extends JFrame{
 		txtObrisan.setSelected(clanBiblioteke.isObrisan());
 		cbTip.setSelectedItem(clanBiblioteke.getTipClanarine());
 	}
+	
 	
 	
 	private boolean validacija() {
@@ -239,6 +256,12 @@ public class ClanForma extends JFrame{
 			poruka += "- Unesite ime i prezime\n";
 			ok = false;
 		}
+		if(txtAdresa.getText().trim().equals("")) {
+			poruka += "- Unesite adresu\n";
+			ok = false;
+			
+		
+		}
 		if(txtJMBG.getText().trim().equals("")) {
 			poruka += "- Unesite JMBG\n";
 			ok = false;
@@ -250,21 +273,17 @@ public class ClanForma extends JFrame{
 			ok = false;
 		}
 		}
-		if(txtAdresa.getText().trim().equals("")) {
-			poruka += "- Unesite adresu\n";
-			ok = false;
-			
 		
-		}
-		
-	
 		
 		if(ok == false) {
 			JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
+			
 		}
 		
 		return ok;
 	}
+
+	
 	
 }
 

@@ -1,9 +1,11 @@
 package biblioteka;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class IznajmljivanjeKnjige {
 
+	private String id;
     private LocalDate datumIznajmljivanja;
     private LocalDate  datumVracanja;
     private boolean obrisan;
@@ -14,6 +16,7 @@ public class IznajmljivanjeKnjige {
     
 
     public IznajmljivanjeKnjige() {
+    	this.id = "";
     	this.datumIznajmljivanja = null ;
 		this.datumVracanja = null;
 		this.obrisan = false;
@@ -23,9 +26,10 @@ public class IznajmljivanjeKnjige {
 		this.bibliotekar = null;
     }
     
-	public IznajmljivanjeKnjige(LocalDate  datumIznajmljivanja,LocalDate  datumVracanja, boolean obrisan, 
+	public IznajmljivanjeKnjige(String id, LocalDate  datumIznajmljivanja,LocalDate  datumVracanja, boolean obrisan, 
 			PrimerakKnjige primerak, ClanBiblioteke clan, Administrator administrator, Bibliotekar bibliotekar) {
 		super();
+		this.id = id;
 		this.datumIznajmljivanja = datumIznajmljivanja;
 		this.datumVracanja = datumVracanja;
 		this.obrisan = obrisan;
@@ -33,6 +37,15 @@ public class IznajmljivanjeKnjige {
 		this.clan = clan;
 		this.administrator = administrator;
 		this.bibliotekar = bibliotekar;
+	}
+	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate  getDatumIznajmljivanja() {
@@ -61,7 +74,7 @@ public class IznajmljivanjeKnjige {
 		return primerak;
 	}
 
-	public void setPrimerak(PrimerakKnjige primerak) {
+	public void setPrimerak( PrimerakKnjige primerak) {
 		this.primerak = primerak;
 	}
 
@@ -91,7 +104,7 @@ public class IznajmljivanjeKnjige {
 	
 	@Override
 	public String toString() {
-		return "Iznajmljivanje [datumIznajmljivanja=" + datumIznajmljivanja +
+		return "Iznajmljivanje [id=" + id + "|datumIznajmljivanja=" + datumIznajmljivanja +
 				"|datumVracanja=" + datumVracanja
 				+ "|obrisan=" + obrisan +
 				"|primerak=" + primerak +

@@ -565,6 +565,14 @@ public class Biblioteka {
 			
 				
 	//CLAN BIBLIOTEKE 
+	public void proveriAktivnost(ClanBiblioteke clanBiblioteke) {
+		LocalDate datumPoslednjeUplate = clanBiblioteke.getDatumPoslednjeUplate();
+		int brojMeseciClanarine =  clanBiblioteke.getBrojMeseciClanarine();
+		LocalDate provera = datumPoslednjeUplate.plusMonths(brojMeseciClanarine);
+		clanBiblioteke.setAktivan(provera.isAfter(LocalDate.now()));
+	}
+	
+	
 	public void upisiClanBiblioteke(String clanBibliotekeFajl) {
 		try {
 			File file = new File(clanBibliotekeFajl);
@@ -576,6 +584,7 @@ public class Biblioteka {
 						 clanBiblioteke.getJMBG() + "|" +  clanBiblioteke.getAdresa() + "|" +
 						 clanBiblioteke.getPol() + "|"  + clanBiblioteke.isObrisan() + "|" + clanBiblioteke.getTipClanarine().getId() + "\n";
 			}
+			
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(content);
 			writer.close();
@@ -615,6 +624,7 @@ public class Biblioteka {
 					}
 					
 					ClanBiblioteke clan = new ClanBiblioteke(brojClanskeKarte,datumPoslednjeUplate, brojMeseciClanarine,aktivan,id,imeIPrezime, JMBG,adresa, pol1, obrisan,tip);
+					this.proveriAktivnost(clan);
 					clanoviBiblioteke.add(clan);
 				}
 				reader.close();
@@ -630,7 +640,7 @@ public class Biblioteka {
 			File file = new File(iznajmljivanjeKnjigeFajl);
 			String content = "";
 			for (IznajmljivanjeKnjige iznajmljivanjeKnjige : iznajmljivanjeKnjige) {	
-				content += iznajmljivanjeKnjige.getDatumIznajmljivanja() + "|" + iznajmljivanjeKnjige.getDatumVracanja() + "|"
+				content += iznajmljivanjeKnjige.getId() + "|" + iznajmljivanjeKnjige.getDatumIznajmljivanja() + "|" + iznajmljivanjeKnjige.getDatumVracanja() + "|"
 				+ iznajmljivanjeKnjige.isObrisan() + "|" + iznajmljivanjeKnjige.getPrimerak().getId() +
 						 "|" + iznajmljivanjeKnjige.getClan().getId() + "|" + iznajmljivanjeKnjige.getAdministrator().getId() + "|" 
 						+ iznajmljivanjeKnjige.getBibliotekar().getId() +"\n";
@@ -650,38 +660,39 @@ public class Biblioteka {
 				String line;
 				while ((line = reader.readLine()) != null) {
 					String[] split = line.split("\\|");
-					LocalDate  datumIznajmljivanja = LocalDate.parse( split[0]);
-					LocalDate  datumVracanja = LocalDate.parse( split[1]);
-					Boolean obrisan = Boolean.parseBoolean(split[2]);
+					String id = split[0];
+					LocalDate  datumIznajmljivanja = LocalDate.parse( split[1]);
+					LocalDate  datumVracanja = LocalDate.parse( split[2]);
+					Boolean obrisan = Boolean.parseBoolean(split[3]);
 					
 					PrimerakKnjige primerak1 = null;
 					for (PrimerakKnjige p : primerakKnjiga) {
-						if(p.getId().equals(split[3])) {
+						if(p.getId().equals(split[4])) {
 							primerak1 = p;
 						}
 					}
 					
 					ClanBiblioteke clan1 = null;
 					for (ClanBiblioteke t : clanoviBiblioteke) {
-						if(t.getId().equals(split[4])) {
+						if(t.getId().equals(split[5])) {
 							clan1 = t;
 						}
 					}
 				
 					Administrator admin = null;
 					for (Administrator a : administratori) {
-						if(a.getId().equals(split[5])) {
+						if(a.getId().equals(split[6])) {
 							admin = a;
 						}
 					}
 					
 					Bibliotekar bibl = null;
 					for (Bibliotekar a : bibliotekari) {
-						if(a.getId().equals(split[6])) {
+						if(a.getId().equals(split[7])) {
 							bibl = a;
 						}
 					}
-					IznajmljivanjeKnjige iznaj = new IznajmljivanjeKnjige(datumIznajmljivanja,datumVracanja, obrisan, primerak1, clan1,  admin, bibl);
+					IznajmljivanjeKnjige iznaj = new IznajmljivanjeKnjige(id,datumIznajmljivanja,datumVracanja, obrisan, primerak1, clan1,  admin, bibl);
 					iznajmljivanjeKnjige.add(iznaj);
 					
 				}
@@ -891,7 +902,7 @@ public class Biblioteka {
 	
 		public ArrayList<IznajmljivanjeKnjige> sviNeobrisaniIznajmljivanje() {
 			ArrayList<IznajmljivanjeKnjige> neobrisani = new ArrayList<IznajmljivanjeKnjige>();
-		for (IznajmljivanjeKnjige iznajmljivanjeKnjige : this.iznajmljivanjeKnjige) {
+		for (IznajmljivanjeKnjige iznajmljivanjeKnjige : iznajmljivanjeKnjige) {
 			if(!iznajmljivanjeKnjige.isObrisan()) {
 				neobrisani.add(iznajmljivanjeKnjige);
 			}
@@ -932,9 +943,9 @@ public class Biblioteka {
 			}
 			return null;
 		}
-		public IznajmljivanjeKnjige nadjiIznajmljivanje(String datumIznajmljivanja) {
-			for (IznajmljivanjeKnjige iznajmljivanjeKnjige : this.iznajmljivanjeKnjige) {
-				if (iznajmljivanjeKnjige.getDatumIznajmljivanja().equals(datumIznajmljivanja)) {
+		public IznajmljivanjeKnjige nadjiIznajmljivanje(String Id) {
+			for (IznajmljivanjeKnjige iznajmljivanjeKnjige : iznajmljivanjeKnjige) {
+				if (iznajmljivanjeKnjige.getId().equals(Id)) {
 					return iznajmljivanjeKnjige;
 				}
 			}

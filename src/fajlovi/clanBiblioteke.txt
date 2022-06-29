@@ -1,1 +1,7 @@
-1|2021-02-02|2|true|1|Clan clan|123456543223|Adresa|MUSKI|false|3
+1|2021-02-02|12|false|1|Clan clan|123456543223|Adresa|MUSKI|false|1
+3|2022-01-01|1|false|3|1|2|2|MUSKI|true|2
+6|2022-01-01|1|false|5|3|456789|A|MUSKI|true|2
+7|2022-01-01|3|false|7|7|7|7|MUSKI|true|1
+10|2022-06-28|1|true|10|IM|293849W934959|ad|MUSKI|false|3
+2|2022-02-07|10|true|2|2|2|2|MUSKI|true|1
+2|2021-02-02|10|false|11|H|7898765345678|A|MUSKI|false|3

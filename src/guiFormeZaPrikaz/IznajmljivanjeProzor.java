@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -70,17 +71,19 @@ public class IznajmljivanjeProzor extends JFrame{
 		mainToolbar.add(btnDelete);
 		add(mainToolbar, BorderLayout.NORTH);
 		
-		String[] zaglavlja = new String[] {"Datum iznajmljivanja", "Datum vracanja", "Primerak knjige", "Clan biblioteke", "Administrator","Bibliotekar"};
+		String[] zaglavlja = new String[] {"ID","Datum iznajmljivanja", "Datum vracanja", "Primerak knjige", "Clan biblioteke", "Administrator","Bibliotekar"};
 		Object[][] sadrzaj = new Object[biblioteka.sviNeobrisaniIznajmljivanje().size()][zaglavlja.length];
 		
 		for(int i=0; i<biblioteka.sviNeobrisaniIznajmljivanje().size(); i++) {
 			IznajmljivanjeKnjige iznajmljivanjeKnjige = biblioteka.sviNeobrisaniIznajmljivanje().get(i);
-			sadrzaj[i][0] = iznajmljivanjeKnjige.getDatumIznajmljivanja();
-			sadrzaj[i][1] = iznajmljivanjeKnjige.getDatumVracanja();
-			sadrzaj[i][2] = iznajmljivanjeKnjige.getPrimerak().getKnjiga().getNaslovKnjige();
-			sadrzaj[i][3] = iznajmljivanjeKnjige.getClan().getImeIPrezime();
-			sadrzaj[i][4] = iznajmljivanjeKnjige.getAdministrator().getImeIPrezime();
-			sadrzaj[i][5] = iznajmljivanjeKnjige.getBibliotekar().getImeIPrezime();
+			
+			sadrzaj[i][0] = iznajmljivanjeKnjige.getId();
+			sadrzaj[i][1] = iznajmljivanjeKnjige.getDatumIznajmljivanja();
+			sadrzaj[i][2] = iznajmljivanjeKnjige.getDatumVracanja();
+			sadrzaj[i][3] = iznajmljivanjeKnjige.getPrimerak().getKnjiga().getNaslovKnjige();
+			sadrzaj[i][4] = iznajmljivanjeKnjige.getClan().getImeIPrezime();
+			sadrzaj[i][5] = iznajmljivanjeKnjige.getAdministrator().getImeIPrezime();
+			sadrzaj[i][6] = iznajmljivanjeKnjige.getBibliotekar().getImeIPrezime();
 
 		}
 		
@@ -105,12 +108,12 @@ public class IznajmljivanjeProzor extends JFrame{
 				if(red == -1) {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
-					String datumIznajmljivanja = tableModel.getValueAt(red, 0).toString();
-					IznajmljivanjeKnjige iznajmljivanjeKnjige = biblioteka.nadjiIznajmljivanje(datumIznajmljivanja);
+					String Id = tableModel.getValueAt(red, 0).toString();
+					IznajmljivanjeKnjige iznajmljivanjeKnjige = biblioteka.nadjiIznajmljivanje(Id);
 					
 					int izbor = JOptionPane.showConfirmDialog(null, 
 							"Da li ste sigurni da zelite da obrisete iznajmljenu knjigu?", 
-							datumIznajmljivanja + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
+							Id + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
 					if(izbor == JOptionPane.YES_OPTION) {
 						iznajmljivanjeKnjige.setObrisan(true);
 						tableModel.removeRow(red);
@@ -137,13 +140,16 @@ public class IznajmljivanjeProzor extends JFrame{
 				if(red == -1) {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
-					String datumIznajmljivanja = tableModel.getValueAt(red, 0).toString();
-					IznajmljivanjeKnjige iznajmljivanjeKnjige = biblioteka.nadjiIznajmljivanje(datumIznajmljivanja);
-
+					String id = tableModel.getValueAt(red, 0).toString();
+					IznajmljivanjeKnjige iznajmljivanjeKnjige = biblioteka.nadjiIznajmljivanje(id);
+					if(iznajmljivanjeKnjige == null) {
+						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja iznajmljivanja sa tim id-om", "Greska", JOptionPane.WARNING_MESSAGE);
+					}else {
 					IznajmljivanjeForma pf = new IznajmljivanjeForma(biblioteka, iznajmljivanjeKnjige);
 						pf.setVisible(true);
 					}
 				}
+			}
 		});
 	}
 }

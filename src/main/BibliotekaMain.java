@@ -50,10 +50,11 @@ public class BibliotekaMain {
 		Login lp = new Login(bibliotekaNova);
 		lp.setVisible(true);
 		
-		ispisiSvePodatke(bibliotekaNova); 
-	}
+//		ispisiSvePodatke(bibliotekaNova); 
+//	}
 		
-		public static void ispisiSvePodatke(Biblioteka biblioteka) {
+//		public static void ispisiSvePodatke(Biblioteka biblioteka) {
+			
 //			for(PrimerakKnjige primerakKnjige : biblioteka.getPrimerakKnjiga()) {
 //				System.out.println(primerakKnjige + "\n");
 //			}
