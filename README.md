@@ -21,3 +21,7 @@ This project involves designing and implementing a library system using the Java
 - Implemented corresponding enumerations for data with predefined set values (language, binding type).
 - Provided unique identifiers (IDs) for each entity, ensuring uniqueness and preventing duplicate entries.
 - Implemented logical deletion for entities, keeping their data in files but hiding them from the system.
+
+## Model- UML diagram
+![diagram-library](https://github.com/anna02272/SR46-2021-UOP-projekat/assets/96575598/8bf73a5c-11e7-4757-a399-36dc1e0f2c40)
+
